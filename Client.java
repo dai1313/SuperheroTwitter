@@ -121,6 +121,33 @@ public class Client {
 		//return to top menu
 	}
 	
+	public static void userSettingsMenu(username) {
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		System.out.println("You are now logged in!\n");
+		do	{
+			System.out.println("Please enter your selection.");
+			
+			//display the menu
+			System.out.println("B: Edit Bio.");
+			System.out.println("C: Change password.");	
+			System.out.println("Q: Return to main menu.\n");
+			
+			//grab the input from the user
+			System.out.println("Enter your choice: ");
+			menuOption = kb.nextLine();
+			
+			//select coorect method - menu option
+			if (menuOption.equals("B") || menuOption.equals("b")) {
+				//editBio(username);
+			} else if (menuOption.equals("E") || menuOption.equals("e")) {
+				//changePassword(username);
+			}	
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		
+		//go to main menu
+	}
+	
 	
 	
 	
