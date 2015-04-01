@@ -15,7 +15,7 @@ public class Client {
 			System.out.println("L: Login.");
 			System.out.println("R: Register.");
 			System.out.println("P: View public tweets.");			
-			System.out.println("E: Exit.\n");
+			System.out.println("Q: Quit program.\n");
 			
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
@@ -34,7 +34,7 @@ public class Client {
 						//... see the private tweets of their followers
 							//i'm considering making... just check the issues page on the github please
 			}
-		} while (!menuOption.equals("E") && !menuOption.equals("e"));
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
 		//clean quit code
 	}
@@ -59,6 +59,8 @@ public class Client {
 		//check to see if username exists
 			//If it dosen't exit...
 			//System.out.println("We could not find this username in the records.");
+				//im not sure if we want to go back to the login menu or ask...
+				//...for a new user name here
 			
 		System.out.println("Enter your password: ");
 		password = kb.nextLine();
@@ -66,12 +68,58 @@ public class Client {
 		//check to see if password is a match
 			//If it does not match...
 			//System.out.println("The password you entered does not match this username.");
+				//im not sure if we want to go back to the login menu or ask...
+				//...for a new user name here
 			
 			//If it does match...
-			
 		mainMenu(username);
 	}
 	
+	public static void mainMenu(String username) {
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		System.out.println("You are now logged in!\n");
+		do	{
+			System.out.println("Please enter your selection.");
+			
+			//display the menu
+			System.out.println("T: Make a tweet.");
+			System.out.println("V: View tweets.");
+			System.out.println("P: View public tweets.");			
+			System.out.println("L: Lookup/Follow user.");
+				//S: Search users
+				//F: Follow user
+			System.out.println("U: Edit user settings.");
+				//B: Edit bio
+				//C: Change password
+			System.out.println("S: Search for a tweet by hashtag.");
+			System.out.println("R: Respond to a tweet.");			
+			System.out.println("Q: Log off.\n");
+			
+			//grab the input from the user
+			System.out.println("Enter your choice: ");
+			menuOption = kb.nextLine();
+			
+			//select coorect method - menu option
+			if (menuOption.equals("T") || menuOption.equals("t")) {
+				//makeTweet(username);
+			} else if (menuOption.equals("V") || menuOption.equals("v")) {
+				//viewTweets(username);
+			} else if (menuOption.equals("P") || menuOption.equals("p")) {
+				//viewPublicTweets(username);
+			} else if (menuOption.equals("L") || menuOption.equals("l")) {
+				//lookupUser(username);
+			} else if (menuOption.equals("U") || menuOption.equals("u")) {
+				//userSettingsMenu(username);
+			} else if (menuOption.equals("S") || menuOption.equals("s")) {
+				//searchHashtag(username);
+			} else if (menuOption.equals("R") || menuOption.equals("r")) {
+				//respond(username);
+			}	
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		
+		//return to top menu
+	}
 	
 	
 	

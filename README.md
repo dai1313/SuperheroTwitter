@@ -1,5 +1,23 @@
 # SuperheroTwitter
 
-A: Right now we need to write all three things
+Here are methods in main that still need to get wrritten
 
-A: I think the first thing we need to write is the menu system.
+register();
+
+printPublicTweets(String);
+
+makeTweet(username);
+
+viewTweets(username);
+
+viewPublicTweets(username);
+
+lookupUser(username);
+
+userSettingsMenu(username);
+
+searchHashtag(username);
+
+respond(username);
+
+AND MORE!
