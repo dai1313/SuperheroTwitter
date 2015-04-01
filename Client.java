@@ -21,7 +21,7 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			//select coorect method - menu option
+			//select correct method - menu option
 			if (menuOption.equals("L") || menuOption.equals("l")) {
 				authenticate();
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
@@ -100,7 +100,7 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			//select coorect method - menu option
+			//select correct method - menu option
 			if (menuOption.equals("T") || menuOption.equals("t")) {
 				//makeTweet(username);
 			} else if (menuOption.equals("V") || menuOption.equals("v")) {
@@ -164,7 +164,7 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			//select coorect method - menu option
+			//select correct method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
 				//editBio(username);
 			} else if (menuOption.equals("C") || menuOption.equals("c")) {

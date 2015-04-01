@@ -1,6 +1,6 @@
 # SuperheroTwitter
 
-Here are methods in main that still need to get wrritten
+Here are methods in main that still need to get written
 
 register();
 
