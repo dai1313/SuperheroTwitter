@@ -12,9 +12,13 @@ viewTweets(username);
 
 viewPublicTweets(username);
 
-lookupUser(username);
+searchUser(username);
 
-userSettingsMenu(username);
+followUser(username);
+
+editBio(username);
+
+changePassword(username);
 
 searchHashtag(username);
 

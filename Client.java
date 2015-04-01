@@ -108,9 +108,9 @@ public class Client {
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
 				//viewPublicTweets(username);
 			} else if (menuOption.equals("L") || menuOption.equals("l")) {
-				//lookupUser(username);
+				lookupUser(username);
 			} else if (menuOption.equals("U") || menuOption.equals("u")) {
-				//userSettingsMenu(username);
+				userSettingsMenu(username);
 			} else if (menuOption.equals("S") || menuOption.equals("s")) {
 				//searchHashtag(username);
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
@@ -121,7 +121,34 @@ public class Client {
 		//return to top menu
 	}
 	
-	public static void userSettingsMenu(username) {
+	public static void lookupUser(String username) {
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		
+		do	{
+			System.out.println("User Lookup/Follow Menu.");
+			
+			//display the menu
+			System.out.println("S: Search users.");
+			System.out.println("F: Follow user.");	
+			System.out.println("Q: Return to main menu.\n");
+			
+			//grab the input from the user
+			System.out.println("Enter your choice: ");
+			menuOption = kb.nextLine();
+			
+			//select coorect method - menu option
+			if (menuOption.equals("S") || menuOption.equals("s")) {
+				//searchUser(username);
+			} else if (menuOption.equals("F") || menuOption.equals("f")) {
+				//followUser(username);
+			}	
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		
+		//go to main menu
+	}
+	
+	public static void userSettingsMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		System.out.println("You are now logged in!\n");
@@ -140,7 +167,7 @@ public class Client {
 			//select coorect method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
 				//editBio(username);
-			} else if (menuOption.equals("E") || menuOption.equals("e")) {
+			} else if (menuOption.equals("C") || menuOption.equals("c")) {
 				//changePassword(username);
 			}	
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
