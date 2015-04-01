@@ -23,7 +23,7 @@ public class Client {
 			
 			//select coorect method - menu option
 			if (menuOption.equals("L") || menuOption.equals("l")) {
-				//authenticate();
+				authenticate();
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
 				//register();
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
@@ -40,24 +40,40 @@ public class Client {
 	}
 	
 	public static void authenticate() {
+		//We will need to read the usrename here
+		//the username list must be filled here as opposed to while the program initializes...
+			//..so people who register and then try to log in without quitting can log in
+			
+		//fillUserNameList(ArrayList usernames);
+			//reading and writing to username files and tweet files is something we will...
+			//be doing a lot of so we will need dedicated methods for this.
+		
 		//crosscheking the username and pasword happens here 
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
 		
+		System.out.println("Enter your username: ");
+		username = kb.nextLine();
 		
+		//check to see if username exists
+			//If it dosen't exit...
+			//System.out.println("We could not find this username in the records.");
+			
+		System.out.println("Enter your password: ");
+		password = kb.nextLine();
+		
+		//check to see if password is a match
+			//If it does not match...
+			//System.out.println("The password you entered does not match this username.");
+			
+			//If it does match...
+			
+		mainMenu(username);
 	}
 	
 	
-	/**
-	T: Make a tweet
-	V: View tweets
-	P: View Public + Following
-	L: Lookup User
-		F: Follow user
-	U: Edit user settings:
-		B: Edit bio
-		//perhaps put a menu for managing following here
-	S: Search for a tweet by hashtag
-	R: Respond to a tweet
-	Q: Log off
-	*/
+	
+	
 	
 }
