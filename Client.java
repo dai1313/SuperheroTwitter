@@ -1,7 +1,15 @@
+import java.util.*;
+import java.io.*;
+
 public class Client {
 	public static void main (String args[]) {
+		
+		
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		System.out.println("Welcome to the superhero twitter(rework this).\n\n");
 		do	{
-			System.out.println("\nWelcome to the superhero twitter(rework this).\n\n");
+			System.out.println("Please enter your selection.");
 			
 			//display the menu
 			System.out.println("L: Login.");
@@ -26,8 +34,30 @@ public class Client {
 						//... see the private tweets of their followers
 							//i'm considering making... just check the issues page on the github please
 			}
-		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		} while (!menuOption.equals("E") && !menuOption.equals("e"));
 		
 		//clean quit code
 	}
+	
+	public static void authenticate() {
+		//crosscheking the username and pasword happens here 
+		
+		
+	}
+	
+	
+	/**
+	T: Make a tweet
+	V: View tweets
+	P: View Public + Following
+	L: Lookup User
+		F: Follow user
+	U: Edit user settings:
+		B: Edit bio
+		//perhaps put a menu for managing following here
+	S: Search for a tweet by hashtag
+	R: Respond to a tweet
+	Q: Log off
+	*/
+	
 }
