@@ -1,8 +1,5 @@
-Swag this is a conflict script test
-
-
-The test resolved this is a push test 
-
-
-I can't unsderstand merge conflicts help
-
+public class Client {
+	public static void main (String args[]) {
+		
+	}
+}
