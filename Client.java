@@ -4,6 +4,14 @@ import java.io.*;
 public class Client {
 	public static void main (String args[]) {
 		
+		//TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING
+		Tweet a = new Tweet("frozone where`is`my`super`suit? true NULL");
+		
+		System.out.println(a.toString());
+		
+		
+		
+		//TESTTING ENDS TESTTING ENDS TESTTING ENDS TESTTING ENDS TESTTING ENDS 
 		
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
