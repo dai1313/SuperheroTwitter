@@ -5,7 +5,7 @@ public class Client {
 	public static void main (String args[]) {
 		
 		//TESTTING TESTTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-		Tweet a = new Tweet("Frozone Where`is`my`super`suit!? true NULL");
+		Tweet a = new Tweet("Frozone Where`is`my`super`suit!? true NULL,NUEE,FFO");
 		Tweet b = new Tweet("Jarvis You`have`an`incoming`message. false NULL");
 		Tweet c = new Tweet("Frozone I`found`my`super`suit`lol true NULL");
 		System.out.println(a.toString());
@@ -14,7 +14,7 @@ public class Client {
 		
 		System.out.println("");
 		
-		User d = new User("Frozone icyman1234! NULL I`am`the`coolest.");
+		User d = new User("Frozone icyman1234! NULL,NUEE,FFO I`am`the`coolest.");
 		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
 		
 		System.out.println(d.toString());

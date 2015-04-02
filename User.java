@@ -16,13 +16,17 @@ public class User {
 		String[] split = fileline.split(" ");
 		username = split[0];
 		password = split[1];
-		//String[] microSplit = split[2].split("`");
-		//ArrayList
+		for (String singleUserFollowing: split[2].split(",")) {
+			following.add(singleUserFollowing);
+		}
 		bio = split[3];
 	}
 	
 	public String toString() {
-		String ret = (username + " " + password + " " + following + " " + bio);
+		String followingf = following.toString();
+		followingf = followingf.substring(1,followingf.length()-1);
+		followingf = followingf.replaceAll("\\s","");
+		String ret = (username + " " + password + " " + followingf + " " + bio);
 		return ret;
 	}
 	

@@ -15,8 +15,9 @@ public class Tweet {
 		body = bodyp;
 		pubTweet = pubTweetp;
 		
-		//String[] microSplit = split[2].split("`");
-		//tags = split[3]; //this should be a loop actually
+		for (String singleTag: tags.toString().split(",")) {
+			tags.add(singleTag);
+		}
 	}
 	
 	
@@ -26,17 +27,17 @@ public class Tweet {
 		body = split[1];
 		pubTweet = Boolean.parseBoolean(split[2]);
 		
-		for (String singleTag: split[3].split("`")) {
+		for (String singleTag: split[3].split(",")) {
 			tags.add(singleTag);
 		}
-
-		//String[] microSplit = split[2].split("`");
-		//tags = split[3]; //this should be a loop actually
 	}
 	
 	
 	public String toString() {
-		String ret = author + " " + body + " " + pubTweet + " " + tags;
+		String tagsf = tags.toString();
+		tagsf = tagsf.substring(1,tagsf.length()-1);
+		tagsf = tagsf.replaceAll("\\s","");
+		String ret = (author + " " + body + " " + pubTweet + " " + tagsf);
 		return ret;
 	}
 	//we need a constructor that takes a string here
