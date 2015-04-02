@@ -6,10 +6,21 @@ public class Client {
 		
 		//TESTTING TESTTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 		Tweet a = new Tweet("Frozone Where`is`my`super`suit!? true NULL");
-		
+		Tweet b = new Tweet("Jarvis You`have`an`incoming`message. false NULL");
+		Tweet c = new Tweet("Frozone I`found`my`super`suit`lol true NULL");
 		System.out.println(a.toString());
+		System.out.println(b.toString());
+		System.out.println(c.toString());
 		
+		System.out.println("");
 		
+		User d = new User("Frozone icyman1234! NULL I`am`the`coolest.");
+		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
+		
+		System.out.println(d.toString());
+		System.out.println(e.toString());
+		
+		System.out.println("");
 		
 		//TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS 
 		
@@ -170,7 +181,6 @@ public class Client {
 	public static void userSettingsMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
-		System.out.println("You are now logged in!\n");
 		do	{
 			System.out.println("Please enter your selection.");
 			

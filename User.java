@@ -12,17 +12,19 @@ public class User {
 	}
 
 	
-	public Tweet (String fileline) {
+	public User (String fileline) {
 		String[] split = fileline.split(" ");
 		username = split[0];
 		password = split[1];
 		//String[] microSplit = split[2].split("`");
 		//ArrayList
 		bio = split[3];
-		tags = "";
 	}
 	
-	//public String 
+	public String toString() {
+		String ret = (username + " " + password + " " + following + " " + bio);
+		return ret;
+	}
 	
 	//we need a constructor that takes a string here
 	
