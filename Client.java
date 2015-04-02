@@ -2,17 +2,13 @@ import java.util.*;
 import java.io.*;
  
 public class Client {
-	public static void main (String args[]) {
+	public static void main (String args[]) throws IOException {
 		
 		//TESTTING TESTTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-		Tweet a = new Tweet("Frozone Where`is`my`super`suit!? true NULL,NUEE,FFO");
-		Tweet b = new Tweet("Jarvis You`have`an`incoming`message. false NULL");
-		Tweet c = new Tweet("Frozone I`found`my`super`suit`lol true NULL");
-		System.out.println(a.toString());
-		System.out.println(b.toString());
-		System.out.println(c.toString());
+		ArrayList<Tweet> tweets = readTweetFile();
+		System.out.println(tweets);
 		
-		System.out.println("");
+		writeTweetFile(tweets);
 		
 		User d = new User("Frozone icyman1234! NULL,NUEE,FFO I`am`the`coolest.");
 		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
@@ -214,14 +210,33 @@ public class Client {
 		
 	}
 	
-	public static ArrayList<Tweet> readTweetFile () {
-		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	public static ArrayList<Tweet> readTweetFile () throws IOException {
+		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
+		
+		//We will need to fill the list from data in the inventory.txt
+		File file = new File("tweets.dat");
+		FileReader fr = new FileReader(file);
+		BufferedReader reader = new BufferedReader(fr);
+		String line = "";
+		//reads the file and fills the array list
+		while ((line = reader.readLine()) != null) {
+			Tweet a = new Tweet(line);
+			tweets.add(a);
+		}
 		
 		return tweets;
 	}
 	
-	public static void writeTweetFile (ArrayList users) {
+	public static void writeTweetFile (ArrayList tweets) throws IOException {
+		//write the tweets to the disk
+		File file = new File("tweets.dat");
+		FileWriter fw = new FileWriter(file);
+		BufferedWriter writer = new BufferedWriter(fw);
 		
+		for (int i = 0; i < tweets.size(); i++) {
+			writer.write(tweets.get(i)+"\n");
+		}	
+		writer.close();
 	}
 	
 }
