@@ -3,24 +3,30 @@ import java.text.*;
 
 public class Tweet {
 	
-	private String author = "";
-	private String body = "";
-	private boolean pubTweet = true;
-	//private String[] tags = {""};
-	public String tags = "";
+	protected String author = "";
+	protected String body = "";
+	protected boolean pubTweet = true;
+	protected ArrayList<String> tags = new ArrayList<String>();
 	
-	//public Tweet (String author, String body, boolean public, ???) {}
-		//how do I make a string array parameter?
-		//or do I just want to have a string that it deliniated by commas?
+	//private String[] tags = {""};
+	
+	public Tweet (String authorp, String bodyp, boolean pubTweetp, ArrayList<String> tags) {
+		author = authorp;
+		body = bodyp;
+		pubTweet = pubTweetp;
+		
+		//String[] microSplit = split[2].split("`");
+		//tags = split[3]; //this should be a loop actually
+	}
+	
 	
 	public Tweet (String fileline) {
 		String[] split = fileline.split(" ");
 		author = split[0];
 		body = split[1];
 		pubTweet = Boolean.parseBoolean(split[2]);
-			//!!!!!!!! parse this!
-		//tags = split[3];
-		tags = "";
+		//String[] microSplit = split[2].split("`");
+		//tags = split[3]; //this should be a loop actually
 	}
 	
 	
