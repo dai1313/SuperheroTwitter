@@ -25,6 +25,11 @@ public class Tweet {
 		author = split[0];
 		body = split[1];
 		pubTweet = Boolean.parseBoolean(split[2]);
+		
+		for (String singleTag: split[3].split("`")) {
+			tags.add(singleTag);
+		}
+
 		//String[] microSplit = split[2].split("`");
 		//tags = split[3]; //this should be a loop actually
 	}
