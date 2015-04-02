@@ -1,6 +1,9 @@
 public class User {
+
 	
-	//public Tweet (String username, String password, ???, String bio) {}
+	public User (String username, String password, ArrayList<String> following, String bio) {
+		
+	}
 		//how do I make a string array parameter?
 		//or do I just want to have a string that it deliniated by commas?
 	

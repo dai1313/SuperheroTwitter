@@ -47,6 +47,8 @@ public class Client {
 		//clean quit code
 	}
 	
+	
+	
 	public static void authenticate() {
 		//We will need to read the usrename here
 		//the username list must be filled here as opposed to while the program initializes...
