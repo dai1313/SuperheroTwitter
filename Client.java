@@ -68,7 +68,7 @@ public class Client {
 		//the username list must be filled here as opposed to while the program initializes...
 			//..so people who register and then try to log in without quitting can log in
 			
-		//fillUserNameList(ArrayList usernames);
+		//ArrayList<User> users = readUserFIle();
 			//reading and writing to username files and tweet files is something we will...
 			//be doing a lot of so we will need dedicated methods for this.
 		
@@ -204,8 +204,24 @@ public class Client {
 		//go to main menu
 	}
 	
+	public static ArrayList<User> readUserFIle () {
+		ArrayList<User> users = new ArrayList<User>();
+		
+		return users;
+	}
 	
+	public static void writeUserFile (ArrayList users) {
+		
+	}
 	
+	public static ArrayList<Tweet> readTweetFile () {
+		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+		
+		return tweets;
+	}
 	
+	public static void writeTweetFile (ArrayList users) {
+		
+	}
 	
 }
