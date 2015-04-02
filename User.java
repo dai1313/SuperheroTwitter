@@ -7,8 +7,15 @@ public class User {
 	protected ArrayList<String> following = new ArrayList<String>();
 	protected String bio;
 	
-	public User (String username, String password, ArrayList<String> following, String bio) {
+	public User (String usernamep, String passwordp, String followingp, String biop) {
+		username = usernamep;
+		password = passwordp;
 		
+		//break up the following and fill array list
+		for (String singleUserFollowing: followingp.split(",")) {
+			following.add(singleUserFollowing);
+		}
+		bio = biop;
 	}
 
 	
@@ -16,6 +23,8 @@ public class User {
 		String[] split = fileline.split(" ");
 		username = split[0];
 		password = split[1];
+		
+		//break up the following and fill array list
 		for (String singleUserFollowing: split[2].split(",")) {
 			following.add(singleUserFollowing);
 		}
@@ -23,9 +32,13 @@ public class User {
 	}
 	
 	public String toString() {
+		//remove the brackets from the array list toString()
 		String followingf = following.toString();
 		followingf = followingf.substring(1,followingf.length()-1);
+		
+		//strip out the spaces
 		followingf = followingf.replaceAll("\\s","");
+		
 		String ret = (username + " " + password + " " + followingf + " " + bio);
 		return ret;
 	}

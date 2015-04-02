@@ -2,19 +2,18 @@ import java.util.*;
 import java.text.*;
 
 public class Tweet {
-	
 	protected String author = "";
 	protected String body = "";
 	protected boolean pubTweet = true;
 	protected ArrayList<String> tags = new ArrayList<String>();
-	
-	//private String[] tags = {""};
+
 	
 	public Tweet (String authorp, String bodyp, boolean pubTweetp, ArrayList<String> tags) {
 		author = authorp;
 		body = bodyp;
 		pubTweet = pubTweetp;
 		
+		//break up the following and fill array list
 		for (String singleTag: tags.toString().split(",")) {
 			tags.add(singleTag);
 		}
@@ -27,6 +26,7 @@ public class Tweet {
 		body = split[1];
 		pubTweet = Boolean.parseBoolean(split[2]);
 		
+		//break up the following and fill array list
 		for (String singleTag: split[3].split(",")) {
 			tags.add(singleTag);
 		}
@@ -34,9 +34,13 @@ public class Tweet {
 	
 	
 	public String toString() {
+		//remove the brackets from the array list toString()
 		String tagsf = tags.toString();
 		tagsf = tagsf.substring(1,tagsf.length()-1);
+		
+		//strip out the spaces
 		tagsf = tagsf.replaceAll("\\s","");
+		
 		String ret = (author + " " + body + " " + pubTweet + " " + tagsf);
 		return ret;
 	}
