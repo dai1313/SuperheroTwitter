@@ -4,14 +4,14 @@ import java.io.*;
 public class Client {
 	public static void main (String args[]) {
 		
-		//TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING TESTTING
-		Tweet a = new Tweet("frozone where`is`my`super`suit? true NULL");
+		//TESTTING TESTTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+		Tweet a = new Tweet("Frozone Where`is`my`super`suit!? true NULL");
 		
 		System.out.println(a.toString());
 		
 		
 		
-		//TESTTING ENDS TESTTING ENDS TESTTING ENDS TESTTING ENDS TESTTING ENDS 
+		//TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS 
 		
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -29,6 +29,9 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
+			
+			System.out.println("----------------------------------------------------------"); 
+		
 			//select correct method - menu option
 			if (menuOption.equals("L") || menuOption.equals("l")) {
 				authenticate();
@@ -90,6 +93,9 @@ public class Client {
 		String menuOption = "";
 		System.out.println("You are now logged in!\n");
 		do	{
+			
+			System.out.println("----------------------------------------------------------"); 
+		
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
@@ -110,6 +116,9 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
+			
+			System.out.println("----------------------------------------------------------"); 
+		
 			//select correct method - menu option
 			if (menuOption.equals("T") || menuOption.equals("t")) {
 				//makeTweet(username);
