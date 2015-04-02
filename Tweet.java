@@ -1,11 +1,33 @@
+import java.util.*;
+import java.text.*;
+
 public class Tweet {
+	
+	private String author = "";
+	private String body = "";
+	private boolean pubTweet = true;
+	//private String[] tags = {""};
+	public String tags = "";
 	
 	//public Tweet (String author, String body, boolean public, ???) {}
 		//how do I make a string array parameter?
 		//or do I just want to have a string that it deliniated by commas?
 	
-	//public Tweet (String fileline) {}
+	public Tweet (String fileline) {
+		String[] split = fileline.split(" ");
+		author = split[0];
+		body = split[1];
+		pubTweet = Boolean.parseBoolean(split[2]);
+			//!!!!!!!! parse this!
+		//tags = split[3];
+		tags = "";
+	}
 	
+	
+	public String toString() {
+		String ret = author + " " + body + " " + pubTweet + " " + tags;
+		return ret;
+	}
 	//we need a constructor that takes a string here
 	
 	//we also need a toString()
