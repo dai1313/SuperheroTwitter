@@ -1,13 +1,28 @@
-public class User {
+import java.util.*;
+import java.text.*;
 
+public class User {
+	protected String username = "";
+	protected String password = "";
+	protected ArrayList<String> following = new ArrayList<String>();
+	protected String bio;
 	
 	public User (String username, String password, ArrayList<String> following, String bio) {
 		
 	}
-		//how do I make a string array parameter?
-		//or do I just want to have a string that it deliniated by commas?
+
 	
-	//public Tweet (String fileline) {}
+	public Tweet (String fileline) {
+		String[] split = fileline.split(" ");
+		username = split[0];
+		password = split[1];
+		//String[] microSplit = split[2].split("`");
+		//ArrayList
+		bio = split[3];
+		tags = "";
+	}
+	
+	//public String 
 	
 	//we need a constructor that takes a string here
 	
