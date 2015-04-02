@@ -1,5 +1,11 @@
 public class Tweet {
 	
+	//public Tweet (String author, String body, boolean public, ???) {}
+		//how do I make a string array parameter?
+		//or do I just want to have a string that it deliniated by commas?
+	
+	//public Tweet (String fileline) {}
+	
 	//we need a constructor that takes a string here
 	
 	//we also need a toString()
