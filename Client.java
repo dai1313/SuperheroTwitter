@@ -4,26 +4,6 @@ import java.io.*;
 public class Client {
 	public static void main (String args[]) throws IOException {
 		
-		//TESTTING TESTTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-		ArrayList<Tweet> tweets = readTweetFile();
-		System.out.println(tweets);
-		
-		writeTweetFile(tweets);
-		
-		
-		
-		ArrayList<User> users = readUserFile();
-		System.out.println(users);
-		
-		writeTweetFile(users);
-		
-		
-		
-		
-		System.out.println("");
-		
-		//TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS TESTING ENDS 
-		
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		System.out.println("Welcome to the superhero twitter(rework this).\n\n");
@@ -205,16 +185,19 @@ public class Client {
 	}
 	
 	public static ArrayList<User> readUserFile() throws IOException {
+		
 		ArrayList<User> users = new ArrayList<User>();
 				
-				
-		User d = new User("Frozone icyman1234! NULL,NUEE,FFO I`am`the`coolest.");
-		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
-		
-		users.add(d);
-		users.add(e);
-		
-		
+		//We will need to fill the list from data in the users.dat
+		File file = new File("users.dat");
+		FileReader fr = new FileReader(file);
+		BufferedReader reader = new BufferedReader(fr);
+		String line = "";
+		//reads the file and fills the array list
+		while ((line = reader.readLine()) != null) {
+			User a = new User(line);
+			users.add(a);
+		}
 		return users;
 	}
 	
@@ -233,7 +216,7 @@ public class Client {
 	public static ArrayList<Tweet> readTweetFile() throws IOException {
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
 		
-		//We will need to fill the list from data in the inventory.txt
+		//We will need to fill the list from data in the tweets.dat
 		File file = new File("tweets.dat");
 		FileReader fr = new FileReader(file);
 		BufferedReader reader = new BufferedReader(fr);
