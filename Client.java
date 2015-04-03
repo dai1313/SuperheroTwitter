@@ -10,11 +10,15 @@ public class Client {
 		
 		writeTweetFile(tweets);
 		
-		User d = new User("Frozone icyman1234! NULL,NUEE,FFO I`am`the`coolest.");
-		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
 		
-		System.out.println(d.toString());
-		System.out.println(e.toString());
+		
+		ArrayList<User> users = readUserFile();
+		System.out.println(users);
+		
+		writeTweetFile(users);
+		
+		
+		
 		
 		System.out.println("");
 		
@@ -200,17 +204,33 @@ public class Client {
 		//go to main menu
 	}
 	
-	public static ArrayList<User> readUserFIle () {
+	public static ArrayList<User> readUserFile() throws IOException {
 		ArrayList<User> users = new ArrayList<User>();
+				
+				
+		User d = new User("Frozone icyman1234! NULL,NUEE,FFO I`am`the`coolest.");
+		User e = new User("Jarvis 435!f3a9@d NULL Beep`beep`boop,`sir.");
+		
+		users.add(d);
+		users.add(e);
+		
 		
 		return users;
 	}
 	
-	public static void writeUserFile (ArrayList users) {
+	public static void writeUserFile(ArrayList users) throws IOException {
+		//write the users to the disk
+		File file = new File("users.dat");
+		FileWriter fw = new FileWriter(file);
+		BufferedWriter writer = new BufferedWriter(fw);
 		
+		for (int i = 0; i < users.size(); i++) {
+			writer.write(users.get(i)+"\n");
+		}	
+		writer.close();
 	}
 	
-	public static ArrayList<Tweet> readTweetFile () throws IOException {
+	public static ArrayList<Tweet> readTweetFile() throws IOException {
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
 		
 		//We will need to fill the list from data in the inventory.txt
@@ -227,7 +247,7 @@ public class Client {
 		return tweets;
 	}
 	
-	public static void writeTweetFile (ArrayList tweets) throws IOException {
+	public static void writeTweetFile(ArrayList tweets) throws IOException {
 		//write the tweets to the disk
 		File file = new File("tweets.dat");
 		FileWriter fw = new FileWriter(file);
