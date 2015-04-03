@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
  
 public class Client {
-	public static void main (String args[]) throws IOException {
+	public static void main (String args[]) {
 		
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -48,11 +48,14 @@ public class Client {
 		//the username list must be filled here as opposed to while the program initializes...
 			//..so people who register and then try to log in without quitting can log in
 			
-		//ArrayList<User> users = readUserFIle();
+		ArrayList<User> users = readUserFile();
 			//reading and writing to username files and tweet files is something we will...
 			//be doing a lot of so we will need dedicated methods for this.
 		
 		//crosscheking the username and pasword happens here 
+			//if we want to impliment a pasword hash then we would put those seperate methods in the read file and write file method
+			//https://www.google.com/search?&q=java%20hash%20a%20password 
+		
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
@@ -184,62 +187,77 @@ public class Client {
 		//go to main menu
 	}
 	
-	public static ArrayList<User> readUserFile() throws IOException {
-		
+	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
-				
-		//We will need to fill the list from data in the users.dat
-		File file = new File("users.dat");
-		FileReader fr = new FileReader(file);
-		BufferedReader reader = new BufferedReader(fr);
-		String line = "";
-		//reads the file and fills the array list
-		while ((line = reader.readLine()) != null) {
-			User a = new User(line);
-			users.add(a);
+		try {
+			//We will need to fill the list from data in the users.dat
+			File file = new File("users.dat");
+			FileReader fr = new FileReader(file);
+			BufferedReader reader = new BufferedReader(fr);
+			String line = "";
+			//reads the file and fills the array list
+			while ((line = reader.readLine()) != null) {
+				User a = new User(line);
+				users.add(a);
+			}
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("IOException ocurred in readUserFile().");
 		}
 		return users;
 	}
 	
-	public static void writeUserFile(ArrayList users) throws IOException {
-		//write the users to the disk
-		File file = new File("users.dat");
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter writer = new BufferedWriter(fw);
-		
-		for (int i = 0; i < users.size(); i++) {
-			writer.write(users.get(i)+"\n");
+	public static void writeUserFile(ArrayList users) {
+		try {
+			//write the users to the disk
+			File file = new File("users.dat");
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter writer = new BufferedWriter(fw);
+			
+			for (int i = 0; i < users.size(); i++) {
+				writer.write(users.get(i)+"\n");
+			}	
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("IOException ocurred in writeUserFile().");
 		}	
-		writer.close();
 	}
 	
-	public static ArrayList<Tweet> readTweetFile() throws IOException {
+	public static ArrayList<Tweet> readTweetFile() {
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
-		
-		//We will need to fill the list from data in the tweets.dat
-		File file = new File("tweets.dat");
-		FileReader fr = new FileReader(file);
-		BufferedReader reader = new BufferedReader(fr);
-		String line = "";
-		//reads the file and fills the array list
-		while ((line = reader.readLine()) != null) {
-			Tweet a = new Tweet(line);
-			tweets.add(a);
-		}
-		
+		try {	
+			//We will need to fill the list from data in the tweets.dat
+			File file = new File("tweets.dat");
+			FileReader fr = new FileReader(file);
+			BufferedReader reader = new BufferedReader(fr);
+			String line = "";
+			//reads the file and fills the array list
+			while ((line = reader.readLine()) != null) {
+				Tweet a = new Tweet(line);
+				tweets.add(a);
+			}
+			reader.close();
+		} catch (IOException e) {
+			System.out.println("IOException ocurred in readTweetFile().");
+		}	
+			
 		return tweets;
 	}
 	
-	public static void writeTweetFile(ArrayList tweets) throws IOException {
-		//write the tweets to the disk
-		File file = new File("tweets.dat");
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter writer = new BufferedWriter(fw);
-		
-		for (int i = 0; i < tweets.size(); i++) {
-			writer.write(tweets.get(i)+"\n");
+	public static void writeTweetFile(ArrayList tweets) {
+		try {
+			//write the tweets to the disk
+			File file = new File("tweets.dat");
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter writer = new BufferedWriter(fw);
+			
+			for (int i = 0; i < tweets.size(); i++) {
+				writer.write(tweets.get(i)+"\n");
+			}	
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("IOException ocurred in writeTweetFile().");
 		}	
-		writer.close();
 	}
 	
 }
