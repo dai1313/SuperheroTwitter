@@ -50,7 +50,48 @@ public class User {
 	//the output of toString() should be able to be read by the string constructor
 	
 	//this way file I/O will be a lot smoother
-	
+
+//---------getters and setters----------------------------------
+        //getter for Username 
+        public String getUsername() {
+            return username;
+        }
+        //setter for Username 
+        public void setUsername(String newUsername) {
+            username = newUsername;
+        }
+       
+
+        //getter for password 
+        public String getPassword() {
+            return password;
+        }
+        //setter for password 
+        public void setPassword(String newPass) {
+            password = newPass;
+        }
+
+
+        //getter for following 
+        public ArrayList<String> getFollowingList() {
+            return following;
+        }
+        //setter for following 
+        public void setFollowingList(ArrayList<String> newFollowing) {
+            following = newFollowing;
+        }
+
+        
+        //getter for bio 
+        public String getBio() {
+            return bio;
+        }
+        //setter for bio 
+        public void setBio(String newBio) {
+            bio = newBio;
+        }
+
+//------------------------------------------------------------------------------
 	
 	/**
 	 * The user class will contain information about each different user. 
