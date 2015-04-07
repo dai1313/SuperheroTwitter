@@ -45,14 +45,51 @@ public class Tweet {
 		return ret;
 	}
 	//we need a constructor that takes a string here
-	
 	//we also need a toString()
-	
 	//the output of toString() should be able to be read by the string constructor
-	
 	//this way file I/O will be a lot smoother
-	
-	
+
+//---getters and setters----------------------------------------------
+        //author getter
+        public String getAuthor() {
+            return author;
+        }
+        //author setter
+        public void setAuthor(String newAuthor) {
+            author = newAuthor;
+        }
+
+
+        //body getter
+        public String getBody() {
+            return body;
+        }
+        //body setter
+        public void setBody(String newBody) {
+            body = newBody;
+        }
+
+
+        //pubTweet getter
+        public boolean getPubTweet() {
+            return pubTweet;
+        }
+        //pubTweet setter
+        public void setPubTweet(boolean newPubTweet) {
+            pubTweet = newPubTweet;
+        }
+
+
+        //tags getter
+        public ArrayList<String> getTags() {
+            return tags;
+        }
+        //tags setter
+        public void setTags(ArrayList<String> newTags) {
+            tags = newTags;
+        }
+
+//---------------------------------------------------------------------
 	
 	/**
 	 * The tweet class will make “Tweet” objects. 
