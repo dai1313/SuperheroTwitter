@@ -27,7 +27,7 @@ public class Client {
 			if (menuOption.equals("L") || menuOption.equals("l")) {
 				authenticate();
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
-				//register();
+				register();
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
 				//printPublicTweets("");
 					//print public tweets with an empty name will print for unregistered
@@ -41,6 +41,9 @@ public class Client {
 		//clean quit code
 	}
 	
+	public static void register() {
+		
+	}
 	
 	
 	public static void authenticate() {
@@ -49,43 +52,41 @@ public class Client {
 			//..so people who register and then try to log in without quitting can log in
 			
 		ArrayList<User> users = readUserFile();
-			//reading and writing to username files and tweet files is something we will...
-			//be doing a lot of so we will need dedicated methods for this.
-		
-		//crosscheking the username and pasword happens here 
-			//if we want to impliment a pasword hash then we would put those seperate methods in the read file and write file method
-			//https://www.google.com/search?&q=java%20hash%20a%20password 
 		
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
+		boolean userExists = false;
+		boolean badPassword = false;
 		
 		System.out.println("Enter your username: ");
 		username = kb.nextLine();
 		
-		//check to see if username exists
-			//If it dosen't exit...
-			//System.out.println("We could not find this username in the records.");
-				//im not sure if we want to go back to the login menu or ask...
-				//...for a new user name here
-			
 		System.out.println("Enter your password: ");
 		password = kb.nextLine();
 		
-		//check to see if password is a match
-			//If it does not match...
-			//System.out.println("The password you entered does not match this username.");
-				//im not sure if we want to go back to the login menu or ask...
-				//...for a new user name here
-			
-			//If it does match...
-		mainMenu(username);
+		users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				if (users.get(i).getPassword().equals(password)) {
+					System.out.println("You are now logged in!\n");
+					mainMenu(username);
+				} else {
+					System.out.println("Login failed. Password does not match.");
+					return;
+				}
+			}
+		}
+		
+		System.out.println("Could not find username.");
+		return;
 	}
 	
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
-		System.out.println("You are now logged in!\n");
+		
 		do	{
 			
 			System.out.println("----------------------------------------------------------"); 
