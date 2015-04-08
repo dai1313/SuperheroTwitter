@@ -27,7 +27,7 @@ public class Client {
 			if (menuOption.equals("L") || menuOption.equals("l")) {
 				authenticate();
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
-				//register();
+				register();
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
 				//printPublicTweets("");
 					//print public tweets with an empty name will print for unregistered
@@ -41,20 +41,49 @@ public class Client {
 		//clean quit code
 	}
 	
+	public static boolean validatePassword(String password) {
+		return true;
+	}
+	
+	public static void register() {
+		System.out.println("Please enter your desired username: ");
+		Scanner kb = new Scanner(System.in);
+		String tempUsername = kb.nextLine();
+		// check existing list for a preexisting user with the same username
+		ArrayList<User> users = readUserFile();
+		Boolean match = false;
+		for(int i = 0; i < users.size(); i++){
+			User temp = users.get(i);
+			if(temp.username == tempUsername){
+				match = true;  //there is already a registered user with the username
+			}
+		}
+		if(match){
+			System.out.println("This username has already been taken. Please try again.");
+		}
+		else{
+			System.out.println("Please enter password: ");
+			String tempPw = kb.nextLine();
+			//enter user into array list of existing users
+			User toAdd = new User();
+			toAdd.username = tempUsername;
+			toAdd.password = tempPw; 
+			users.add(toAdd);
+			writeUserFile(users);
+			System.out.println("Congratulations! You are registered with Superhero Twitter!");
+			System.out.println("Press Enter to continue.");
+			String useless = kb.nextLine();
+			mainMenu(tempUsername);
+			kb.close();
+			
+		}
+	} //end of register()
 	
 	
 	public static void authenticate() {
 		//We will need to read the usrename here
 		//the username list must be filled here as opposed to while the program initializes...
 			//..so people who register and then try to log in without quitting can log in
-			
-		ArrayList<User> users = readUserFile();
-			//reading and writing to username files and tweet files is something we will...
-			//be doing a lot of so we will need dedicated methods for this.
-		
-		//crosscheking the username and pasword happens here 
-			//if we want to impliment a pasword hash then we would put those seperate methods in the read file and write file method
-			//https://www.google.com/search?&q=java%20hash%20a%20password 
 		
 		Scanner kb = new Scanner(System.in);
 		String username;
@@ -63,29 +92,31 @@ public class Client {
 		System.out.println("Enter your username: ");
 		username = kb.nextLine();
 		
-		//check to see if username exists
-			//If it dosen't exit...
-			//System.out.println("We could not find this username in the records.");
-				//im not sure if we want to go back to the login menu or ask...
-				//...for a new user name here
-			
 		System.out.println("Enter your password: ");
 		password = kb.nextLine();
 		
-		//check to see if password is a match
-			//If it does not match...
-			//System.out.println("The password you entered does not match this username.");
-				//im not sure if we want to go back to the login menu or ask...
-				//...for a new user name here
-			
-			//If it does match...
-		mainMenu(username);
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				if (users.get(i).getPassword().equals(password)) {
+					System.out.println("You are now logged in!\n");
+					mainMenu(username);
+				} else {
+					System.out.println("Login failed. Password does not match.");
+					return;
+				}
+			}
+		}
+		
+		System.out.println("Could not find username.");
+		return;
 	}
 	
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
-		System.out.println("You are now logged in!\n");
+		
 		do	{
 			
 			System.out.println("----------------------------------------------------------"); 
