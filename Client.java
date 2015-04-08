@@ -71,10 +71,12 @@ public class Client {
 		}
 		
 		//add user here
+		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
+		users.add(a);
+		writeUserFile(users);
+		
 		
 		//prompt for bio entry
-		
-		writeUserFile(users);
 		
 		
 	}
