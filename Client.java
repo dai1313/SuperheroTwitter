@@ -41,7 +41,41 @@ public class Client {
 		//clean quit code
 	}
 	
+	public static boolean validatePassword(String password) {
+		return true;
+	}
+	
 	public static void register() {
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		
+		System.out.println("Enter your desired username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your desired password: ");
+		password = kb.nextLine();
+		
+		if (!validatePassword(password)) {
+			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			return;
+		}
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println("This name already exists in the system.\n");
+				return;
+			}
+		}
+		
+		//add user here
+		
+		//prompt for bio entry
+		
+		writeUserFile(users);
+		
 		
 	}
 	
@@ -50,14 +84,10 @@ public class Client {
 		//We will need to read the usrename here
 		//the username list must be filled here as opposed to while the program initializes...
 			//..so people who register and then try to log in without quitting can log in
-			
-		ArrayList<User> users = readUserFile();
 		
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
-		boolean userExists = false;
-		boolean badPassword = false;
 		
 		System.out.println("Enter your username: ");
 		username = kb.nextLine();
@@ -65,7 +95,7 @@ public class Client {
 		System.out.println("Enter your password: ");
 		password = kb.nextLine();
 		
-		users = readUserFile();
+		ArrayList<User> users = readUserFile();
 		
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
