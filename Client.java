@@ -1,7 +1,5 @@
 import java.util.*;
 import java.io.*;
- 
-// test comment right back at ye
 
 public class Client {
 	public static void main (String args[]) {
