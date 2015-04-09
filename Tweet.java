@@ -92,7 +92,7 @@ public class Tweet {
 //---------------------------------------------------------------------
 	
 	/**
-	 * The tweet class will make “Tweet” objects. 
+	 * The tweet class will make tweet objects. 
 	 * The tweet class will consist of three different data values. 
 	 * Each tweet object will contain a message body that is 180 characters in length. 
 	 * This message will be stored as a string. 
