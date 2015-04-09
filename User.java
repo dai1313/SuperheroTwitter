@@ -7,12 +7,6 @@ public class User {
 	protected ArrayList<String> following = new ArrayList<String>();
 	protected String bio;
 	
-	public User(){
-		username = "";
-		password = "";
-		ArrayList<String> following = new ArrayList<String>();
-		bio = "";
-	}
 	
 	public User (String usernamep, String passwordp, String followingp, String biop) {
 		username = usernamep;

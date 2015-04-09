@@ -46,38 +46,6 @@ public class Client {
 	}
 	
 	public static void register() {
-		System.out.println("Please enter your desired username: ");
-		Scanner kb = new Scanner(System.in);
-		String tempUsername = kb.nextLine();
-		// check existing list for a preexisting user with the same username
-		ArrayList<User> users = readUserFile();
-		Boolean match = false;
-		for(int i = 0; i < users.size(); i++){
-			User temp = users.get(i);
-			if(temp.username == tempUsername){
-				match = true;  //there is already a registered user with the username
-			}
-		}
-		if(match){
-			System.out.println("This username has already been taken. Please try again.");
-		}
-		else{
-			System.out.println("Please enter password: ");
-			String tempPw = kb.nextLine();
-			//enter user into array list of existing users
-			User toAdd = new User();
-			toAdd.username = tempUsername;
-			toAdd.password = tempPw; 
-			users.add(toAdd);
-			writeUserFile(users);
-			System.out.println("Congratulations! You are registered with Superhero Twitter!");
-			System.out.println("Press Enter to continue.");
-			String useless = kb.nextLine();
-			mainMenu(tempUsername);
-			kb.close();
-			
-		}
-	} //end of register()
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
