@@ -7,6 +7,13 @@ public class User {
 	protected ArrayList<String> following = new ArrayList<String>();
 	protected String bio;
 	
+	public User(){
+		username = "";
+		password = "";
+		ArrayList<String> following = new ArrayList<String>();
+		bio = "";
+	}
+	
 	public User (String usernamep, String passwordp, String followingp, String biop) {
 		username = usernamep;
 		password = passwordp;
@@ -104,3 +111,6 @@ public class User {
 	 *   user before a user decides to follow them.
 	 */
 }
+
+
+
