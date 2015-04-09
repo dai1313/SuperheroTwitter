@@ -78,6 +78,40 @@ public class Client {
 			
 		}
 	} //end of register()
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		
+		System.out.println("Enter your desired username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your desired password: ");
+		password = kb.nextLine();
+		
+		if (!validatePassword(password)) {
+			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			return;
+		}
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println("This name already exists in the system.\n");
+				return;
+			}
+		}
+		
+		//add user here
+		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
+		users.add(a);
+		writeUserFile(users);
+		
+		
+		//prompt for bio entry
+		
+		
+	}
 	
 	
 	public static void authenticate() {
