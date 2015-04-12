@@ -45,6 +45,103 @@ public class Client {
 
 
 //--MAIN MENU-------------------------------------------------------------------------------------------------- 
+	
+	public static boolean validatePassword(String password) {
+		return true;
+	}
+	
+	public static void register() {
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		
+		System.out.println("Enter your desired username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your desired password: ");
+		password = kb.nextLine();
+		
+		if (!validatePassword(password)) {
+			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			return;
+		}
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println("This name already exists in the system.\n");
+				return;
+			}
+		}
+		
+		//add user here
+		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
+		users.add(a);
+		writeUserFile(users);
+		
+		
+		//prompt for bio entry
+		
+		
+	}
+	
+	public static void editBio(String username) {
+		Scanner kb = new Scanner(System.in);
+		String bioLine = "";
+		
+		System.out.println("Your current bio looks like this: ");
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println(users.get(i).getBio());
+			}
+		}
+		
+		System.out.println("Please enter your desired bio, \nIf you want to keep your current bio then simply press enter:");
+		
+		bioLine = kb.nextLine();
+
+	}
+	
+	
+	public static void authenticate() {
+		//We will need to read the usrename here
+		//the username list must be filled here as opposed to while the program initializes...
+			//..so people who register and then try to log in without quitting can log in
+		
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		boolean found = false;
+		
+		System.out.println("Enter your username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your password: ");
+		password = kb.nextLine();
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				found = true;
+				if (users.get(i).getPassword().equals(password)) {
+					System.out.println("You are now logged in!\n");
+					mainMenu(username);
+				} else {
+					System.out.println("Login failed. Password does not match.");
+				}
+			}
+		}
+		
+		if (!found){
+			System.out.println("Could not find username.");
+		}
+	}
+	
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -147,7 +244,7 @@ public class Client {
 			
 			//select correct method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
-				//editBio(username);
+				editBio(username);
 			} else if (menuOption.equals("C") || menuOption.equals("c")) {
 				//changePassword(username);
 			}	
