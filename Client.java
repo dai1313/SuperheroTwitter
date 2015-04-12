@@ -119,7 +119,7 @@ public class Client {
 			
 			//select coorect method - menu option
 			if (menuOption.equals("S") || menuOption.equals("s")) {
-				//searchUser(username);
+				searchUser();
 			} else if (menuOption.equals("F") || menuOption.equals("f")) {
 				//followUser(username);
 			}	
@@ -239,25 +239,36 @@ public class Client {
 
 //-----SEARCH FOR A USER-------------------------------------------------------------------------------------------------------
 	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
-	//should this return a string representing the users name or an actual user?
-	public static String searchUser(String usernameToSearch) {
-		try {
-			//get list of users from files
-			ArrayList<User> usersToSearchList = readUserFile();
-
+	public static String searchUser() {
+		//try {
+		Scanner kb = new Scanner(System.in);
+		String userToSearchFor = "";
+		String userFound = "";
 			
-			//austin says it will be an array and you can parse through that
+		System.out.println("Please enter the username to search for: "); 
+		userToSearchFor = kb.nextLine();
+		System.out.println(); 
+			
+		ArrayList<User> usersToSearchList = readUserFile();
+		int lengthOfSearchArray = usersToSearchList.size();
 
-
-			//compare each username to the usernametosearch
-
-			//
-
-
-		} catch (Exception e) {
-			System.out.println("Exception ocurred in searchUser().");
-			System.out.println(e); 
+		for(int i =0; i< lengthOfSearchArray; i++) {
+			String currentUserName= (usersToSearchList.get(i)).getUsername();
+			if(currentUserName.equals(userToSearchFor)) {
+				System.out.println("We found the user: " + currentUserName); 
+				System.out.println(); 
+				break;
+			} 
+			if ( (i == lengthOfSearchArray - 1 ) & (!currentUserName.equals(userToSearchFor)) ) {
+				System.out.println("We couldn't find: " + userToSearchFor + " in our system."); 	
+				System.out.println(); 
+			}
 		}
+
+		//} catch (Exception e) {
+			//System.out.println("Exception ocurred in searchUser().");
+			//System.out.println(e); 
+		//}
 		return userFound;
 	}
 //------------------------------------------------------------------------------------------------------ 
