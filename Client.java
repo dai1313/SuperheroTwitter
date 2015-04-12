@@ -81,6 +81,26 @@ public class Client {
 		
 	}
 	
+	public static void editBio(String username) {
+		Scanner kb = new Scanner(System.in);
+		String bioLine = "";
+		
+		System.out.println("Your current bio looks like this: ");
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println(users.get(i).getBio());
+			}
+		}
+		
+		System.out.println("Please enter your desired bio, \nIf you want to keep your current bio then simply press enter:");
+		
+		bioLine = kb.nextLine();
+
+	}
+	
 	
 	public static void authenticate() {
 		//We will need to read the usrename here
@@ -90,6 +110,7 @@ public class Client {
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
+		boolean found = false;
 		
 		System.out.println("Enter your username: ");
 		username = kb.nextLine();
@@ -101,18 +122,19 @@ public class Client {
 		
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				found = true;
 				if (users.get(i).getPassword().equals(password)) {
 					System.out.println("You are now logged in!\n");
 					mainMenu(username);
 				} else {
 					System.out.println("Login failed. Password does not match.");
-					return;
 				}
 			}
 		}
 		
-		System.out.println("Could not find username.");
-		return;
+		if (!found){
+			System.out.println("Could not find username.");
+		}
 	}
 	
 	public static void mainMenu(String username) {
@@ -211,7 +233,7 @@ public class Client {
 			
 			//select correct method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
-				//editBio(username);
+				editBio(username);
 			} else if (menuOption.equals("C") || menuOption.equals("c")) {
 				//changePassword(username);
 			}	

@@ -40,6 +40,10 @@ public class User {
 		//strip out the spaces
 		followingf = followingf.replaceAll("\\s","");
 		
+		//now format the bio
+		bio = bio.replaceAll(" ","`");
+		
+		
 		String ret = (username + " " + password + " " + followingf + " " + bio);
 		return ret;
 	}
