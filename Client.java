@@ -39,82 +39,12 @@ public class Client {
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
 		//clean quit code
+		//aka Main ends here
 	}
-	
-	public static boolean validatePassword(String password) {
-		return true;
-	}
-	
-	public static void register() {
-		Scanner kb = new Scanner(System.in);
-		String username;
-		String password;
-		
-		System.out.println("Enter your desired username: ");
-		username = kb.nextLine();
-		
-		System.out.println("Enter your desired password: ");
-		password = kb.nextLine();
-		
-		if (!validatePassword(password)) {
-			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
-			return;
-		}
-		
-		ArrayList<User> users = readUserFile();
-		
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-				System.out.println("This name already exists in the system.\n");
-				return;
-			}
-		}
-		
-		//add user here
-		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
-		users.add(a);
-		writeUserFile(users);
-		
-		
-		//prompt for bio entry
-		
-		
-	}
-	
-	
-	public static void authenticate() {
-		//We will need to read the usrename here
-		//the username list must be filled here as opposed to while the program initializes...
-			//..so people who register and then try to log in without quitting can log in
-		
-		Scanner kb = new Scanner(System.in);
-		String username;
-		String password;
-		
-		System.out.println("Enter your username: ");
-		username = kb.nextLine();
-		
-		System.out.println("Enter your password: ");
-		password = kb.nextLine();
-		
-		ArrayList<User> users = readUserFile();
-		
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-				if (users.get(i).getPassword().equals(password)) {
-					System.out.println("You are now logged in!\n");
-					mainMenu(username);
-				} else {
-					System.out.println("Login failed. Password does not match.");
-					return;
-				}
-			}
-		}
-		
-		System.out.println("Could not find username.");
-		return;
-	}
-	
+//------------------------------------------------------------------------------------------------------ 	
+
+
+//--MAIN MENU-------------------------------------------------------------------------------------------------- 
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -166,7 +96,9 @@ public class Client {
 		
 		//return to top menu
 	}
-	
+//------------------------------------------------------------------------------------------------------ 
+
+//--LOOKUP USER-----------------------------------------------------------------------------------------------------
 	public static void lookupUser(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -193,7 +125,9 @@ public class Client {
 		
 		//go to main menu
 	}
-	
+//--------------------------------------------------------------------------------------------------------------------- 
+
+//----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
 	public static void userSettingsMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -219,7 +153,114 @@ public class Client {
 		
 		//go to main menu
 	}
+//--------------------------------------------------------------------------------------------------------------------- 
+
+//--VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
+	public static boolean validatePassword(String password) {
+		//do we need this fuction to check for number of characters and all of that? Is that in the b requirements?
+		return true;
+	}
+//------------------------------------------------------------------------------------------------------ 
 	
+//--REGISTER---------------------------------------------------------------------------------------------------- 
+	public static void register() {
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		
+		System.out.println("Enter your desired username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your desired password: ");
+		password = kb.nextLine();
+		
+		if (!validatePassword(password)) {
+			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			return;
+		}
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				System.out.println("This name already exists in the system.\n");
+				return;
+			}
+		}
+		
+		//add user here
+		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
+		users.add(a);
+		writeUserFile(users);
+		
+		
+		//prompt for bio entry
+		
+		
+	}
+//------------------------------------------------------------------------------------------------------ 	
+	
+//--AUTHENTICATE---------------------------------------------------------------------------------------------------- 
+	public static void authenticate() {
+		//We will need to read the usrename here
+		//the username list must be filled here as opposed to while the program initializes...
+			//..so people who register and then try to log in without quitting can log in
+		
+		Scanner kb = new Scanner(System.in);
+		String username;
+		String password;
+		
+		System.out.println("Enter your username: ");
+		username = kb.nextLine();
+		
+		System.out.println("Enter your password: ");
+		password = kb.nextLine();
+		
+		ArrayList<User> users = readUserFile();
+		
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				if (users.get(i).getPassword().equals(password)) {
+					System.out.println("You are now logged in!\n");
+					mainMenu(username);
+				} else {
+					System.out.println("Login failed. Password does not match.");
+					return;
+				}
+			}
+		}
+		
+		System.out.println("Could not find username.");
+		return;
+	}
+//------------------------------------------------------------------------------------------------------ 
+
+//-----SEARCH FOR A USER-------------------------------------------------------------------------------------------------------
+	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
+	//should this return a string representing the users name or an actual user?
+	public static String searchUser(String usernameToSearch) {
+		try {
+			//get list of users from files
+			ArrayList<User> usersToSearchList = readUserFile();
+
+			
+			//austin says it will be an array and you can parse through that
+
+
+			//compare each username to the usernametosearch
+
+			//
+
+
+		} catch (Exception e) {
+			System.out.println("Exception ocurred in searchUser().");
+			System.out.println(e); 
+		}
+		return userFound;
+	}
+//------------------------------------------------------------------------------------------------------ 
+	
+//---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
 	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
 		try {
@@ -239,7 +280,9 @@ public class Client {
 		}
 		return users;
 	}
+//--------------------------------------------------------------------------------------------------------------------- 
 	
+//----WRITE TO USER FILE--------------------------------------------------------------------------------------------------------
 	public static void writeUserFile(ArrayList users) {
 		try {
 			//write the users to the disk
@@ -255,7 +298,9 @@ public class Client {
 			System.out.println("IOException ocurred in writeUserFile().");
 		}	
 	}
+//--------------------------------------------------------------------------------------------------------------------- 
 	
+//----READ FROM TWEET FILE--------------------------------------------------------------------------------------------------------
 	public static ArrayList<Tweet> readTweetFile() {
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
 		try {	
@@ -276,7 +321,9 @@ public class Client {
 			
 		return tweets;
 	}
+//--------------------------------------------------------------------------------------------------------------------- 
 	
+//-----WRITE TO TWEET FILE--------------------------------------------------------------------------------------------------
 	public static void writeTweetFile(ArrayList tweets) {
 		try {
 			//write the tweets to the disk
@@ -292,7 +339,14 @@ public class Client {
 			System.out.println("IOException ocurred in writeTweetFile().");
 		}	
 	}
-	
+//--------------------------------------------------------------------------------------------------------------------- 
 
-				//searchUser(username);
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------- 
+//-Client.java ends here---------------------------------------------------------------------------------------
+
 }
