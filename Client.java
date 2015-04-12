@@ -65,7 +65,9 @@ public class Client {
 			System.out.println("U: Edit user settings.");
 				//B: Edit bio
 				//C: Change password
-			System.out.println("S: Search for a tweet by hashtag.");
+//Search by hashtag is an A requirement thing, commented it out so I would feel better. :)
+//Obviously, you can still get to this option by pushing s.
+//			System.out.println("S: Search for a tweet by hashtag.");
 			System.out.println("R: Respond to a tweet.");			
 			System.out.println("Q: Log off.\n");
 			
