@@ -140,6 +140,7 @@ public class Client {
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
+		String prompt;
 		
 		System.out.println("Enter your desired username: ");
 		username = kb.nextLine();
@@ -168,8 +169,11 @@ public class Client {
 		
 		
 		//prompt for bio entry
-		
-		
+		System.out.println("Would you like to write a bio for your profile?\n[y/N]: ");
+		prompt = kb.nextLine();
+		if (prompt.equalsIgnoreCase("Y") || prompt.equalsIgnoreCase("YES")) {
+			editBio(username);
+		}
 	}
 //------------------------------------------------------------------------------------------------------ 
 	
@@ -177,6 +181,7 @@ public class Client {
 	public static void editBio(String username) {
 		Scanner kb = new Scanner(System.in);
 		String bioLine = "";
+		String bioLinef = "";
 		
 		System.out.println("Your current bio looks like this: ");
 		
@@ -184,14 +189,27 @@ public class Client {
 		
 		for (int i = 0; i < users.size(); i++) {
 			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-				System.out.println(users.get(i).getBio());
+				System.out.println("\""+users.get(i).getBio()+"\"");
 			}
 		}
 		
-		System.out.println("Please enter your desired bio, \nIf you want to keep your current bio then simply press enter:");
+		System.out.println("Please enter your desired bio. \nIf you want to keep your current bio then simply press enter:");
 		
 		bioLine = kb.nextLine();
-
+		
+		//we don't want an empty bio
+		bioLinef = bioLine.replaceAll(" ","");
+		
+		if (!bioLinef.equals("")) {
+			ArrayList<User> usersBurn = readUserFile();
+			for (int i = 0; i < usersBurn.size(); i++) {
+				if (usersBurn.get(i).getUsername().equalsIgnoreCase(username)) {
+					usersBurn.get(i).setBio(bioLine);
+					System.out.println("jfdsakfhskjafhlkjsa");
+				}
+			}
+			writeUserFile(usersBurn);
+		}
 	}
 //------------------------------------------------------------------------------------------------------ 
 	
