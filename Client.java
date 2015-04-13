@@ -41,7 +41,7 @@ public class Client {
 						//... see the private tweets of their followers
 							//i'm considering making... just check the issues page on the github please
 			}
-		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		} while (!menuOption.equals("QUIT") && !menuOption.equals("quit"));
 		
 		//clean quit code
 		//aka Main ends here
