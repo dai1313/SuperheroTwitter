@@ -91,7 +91,7 @@ public class Client {
 			} else if (menuOption.equals("V") || menuOption.equals("v")) {
 				//viewTweets(username);
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
-				//viewPublicTweets(username);
+				printPublicTweets("");
 			} else if (menuOption.equals("L") || menuOption.equals("l")) {
 				lookupUser(username);
 			} else if (menuOption.equals("U") || menuOption.equals("u")) {
