@@ -85,10 +85,9 @@ public class User {
             return following;
         }
         //setter for following 
-        public void setFollowingList(ArrayList<String> newFollowing) {
+        public void setNewFollowingList(ArrayList<String> newFollowing) {
             following = newFollowing;
         }
-
         
         //getter for bio 
         public String getBio() {
