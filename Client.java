@@ -311,7 +311,7 @@ public class Client {
 	}
 //------------------------------------------------------------------------------------------------------ 
 
-//--LOOKUP USER-----------------------------------------------------------------------------------------------------
+//--LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
 	public static void lookupUser(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -328,11 +328,11 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			//select coorect method - menu option
+			//select correct method - menu option
 			if (menuOption.equals("S") || menuOption.equals("s")) {
-				searchUser();
+				//searchUser(username);
 			} else if (menuOption.equals("F") || menuOption.equals("f")) {
-				//followUser(username);
+				followUser(username);
 			}	
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
@@ -346,12 +346,22 @@ public class Client {
 		return true;
 	}
 //------------------------------------------------------------------------------------------------------ 
-	
+
+
+//--FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
+	public static void followUser(username) {
+		//check to see if user exists
+
+		//add user to following list
+		
+		
+	}
+//------------------------------------------------------------------------------------------------------ 
 	
 
-//-----SEARCH FOR A USER-------------------------------------------------------------------------------------------------------
+//---CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
 	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
-	public static String searchUser() {
+	public static boolean doesUserExist() {
 		//try {
 		Scanner kb = new Scanner(System.in);
 		String userToSearchFor = "";
