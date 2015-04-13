@@ -205,7 +205,6 @@ public class Client {
 			for (int i = 0; i < usersBurn.size(); i++) {
 				if (usersBurn.get(i).getUsername().equalsIgnoreCase(username)) {
 					usersBurn.get(i).setBio(bioLine);
-					System.out.println("jfdsakfhskjafhlkjsa");
 				}
 			}
 			writeUserFile(usersBurn);
