@@ -30,6 +30,9 @@ public class User {
 			following.add(singleUserFollowing);
 		}
 		bio = split[3];
+		
+		//fix the bio
+		bio = bio.replaceAll("`"," ");
 	}
 	
 	public String toString() {
