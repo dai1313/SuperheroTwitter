@@ -133,11 +133,7 @@ public class Client {
 //--------------------------------------------------------------------------------------------------------------------- 
 
 
-//---VALIDATE PASSWORD---------------------------------------------------------------------------------------- 
-	public static boolean validatePassword(String password) {
-		return true;
-	}
-//------------------------------------------------------------------------------------------------------ 
+
 	
 //---REGISTER A NEW USER------------------------------------------------------------------------------------- 
 	public static void register() {
@@ -272,77 +268,7 @@ public class Client {
 	}
 //------------------------------------------------------------------------------------------------------ 
 	
-//--REGISTER---------------------------------------------------------------------------------------------------- 
-	public static void register() {
-		Scanner kb = new Scanner(System.in);
-		String username;
-		String password;
-		
-		System.out.println("Enter your desired username: ");
-		username = kb.nextLine();
-		
-		System.out.println("Enter your desired password: ");
-		password = kb.nextLine();
-		
-		if (!validatePassword(password)) {
-			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
-			return;
-		}
-		
-		ArrayList<User> users = readUserFile();
-		
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-				System.out.println("This name already exists in the system.\n");
-				return;
-			}
-		}
-		
-		//add user here
-		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
-		users.add(a);
-		writeUserFile(users);
-		
-		//prompt for bio entry
-		
-
-	}
-//------------------------------------------------------------------------------------------------------ 	
 	
-//--AUTHENTICATE---------------------------------------------------------------------------------------------------- 
-	public static void authenticate() {
-		//We will need to read the usrename here
-		//the username list must be filled here as opposed to while the program initializes...
-			//..so people who register and then try to log in without quitting can log in
-		
-		Scanner kb = new Scanner(System.in);
-		String username;
-		String password;
-		
-		System.out.println("Enter your username: ");
-		username = kb.nextLine();
-		
-		System.out.println("Enter your password: ");
-		password = kb.nextLine();
-		
-		ArrayList<User> users = readUserFile();
-		
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-				if (users.get(i).getPassword().equals(password)) {
-					System.out.println("You are now logged in!\n");
-					mainMenu(username);
-				} else {
-					System.out.println("Login failed. Password does not match.");
-					return;
-				}
-			}
-		}
-		
-		System.out.println("Could not find username.");
-		return;
-	}
-//------------------------------------------------------------------------------------------------------ 
 
 //-----SEARCH FOR A USER-------------------------------------------------------------------------------------------------------
 	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
