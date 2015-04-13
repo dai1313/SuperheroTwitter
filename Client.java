@@ -194,7 +194,7 @@ public class Client {
           }
       
      } // end of PrintPublicTweets()
-
+//------------------------------------------------------------------------------------------------------ 
 
 	
 //---REGISTER A NEW USER------------------------------------------------------------------------------------- 
@@ -311,7 +311,7 @@ public class Client {
 	}
 //------------------------------------------------------------------------------------------------------ 
 
-//--LOOKUP USER-----------------------------------------------------------------------------------------------------
+//--LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
 	public static void lookupUser(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -328,11 +328,11 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			//select coorect method - menu option
+			//select correct method - menu option
 			if (menuOption.equals("S") || menuOption.equals("s")) {
-				searchUser();
+				//searchUser(username);
 			} else if (menuOption.equals("F") || menuOption.equals("f")) {
-				//followUser(username);
+				followUser(username);
 			}	
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
@@ -346,42 +346,105 @@ public class Client {
 		return true;
 	}
 //------------------------------------------------------------------------------------------------------ 
-	
-	
 
-//-----SEARCH FOR A USER-------------------------------------------------------------------------------------------------------
-	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
-	public static String searchUser() {
-		//try {
+
+//--FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
+	public static void followUser(String currentUser) {
 		Scanner kb = new Scanner(System.in);
-		String userToSearchFor = "";
-		String userFound = "";
+		//user types in person to follow
+		String userToFollow = "";
 			
-		System.out.println("Please enter the username to search for: "); 
-		userToSearchFor = kb.nextLine();
+		System.out.println("Please enter the username to follow: "); 
+		userToFollow = kb.nextLine();
 		System.out.println(); 
-			
+		
+		//check to see if user exists
+		boolean resultOfExist = doesUserExist(userToFollow);
+		if (resultOfExist == true) {
+				if (!userToFollow.equalsIgnoreCase(currentUser)) {
+					if (!isAlreadyFollowing(currentUser, userToFollow)) {
+						//find the actual User object of current user
+						ArrayList<User> usersInFile = readUserFile();
+						int lengthOfUsersInFile = usersInFile.size();
+
+						//the user is guaranteed to be in here bc of result of user exist
+						for (int i = 0; i < lengthOfUsersInFile; i++) {
+							String aUserInTheFile = (usersInFile.get(i)).getUsername();
+							//finding user object	
+							if (aUserInTheFile.equalsIgnoreCase(currentUser)) {
+								ArrayList<String> currentFollowing = usersInFile.get(i).getFollowingList();
+								//add user to following list
+								currentFollowing.add(userToFollow);
+								//update files
+								writeUserFile(usersInFile);
+								System.out.println("The user: " + userToFollow + " has been added to your following list."); 
+							}//end if
+						}//end for
+					} else {
+						System.out.println("You are already following: " + userToFollow + "."); 	
+						System.out.println("---------------------------"); 
+					}
+				} else {
+					System.out.println("You can't follow yourself!"); 
+					System.out.println("---------------------------"); 
+				}
+		} else {
+			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
+			System.out.println("---------------------------"); 
+		}
+
+	}//end follow user
+//------------------------------------------------------------------------------------------------------ 
+	
+//--IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
+	public static boolean isAlreadyFollowing(String currentUser, String userToFollow) {
+		//find the actual User object of current user
+		ArrayList<User> usersInFile = readUserFile();
+		ArrayList<String> currentFollowing = new ArrayList<String>();
+		int lengthOfUsersInFile = usersInFile.size();
+
+		//the user is guaranteed to be in here bc of result of user exist
+		for (int i = 0; i < lengthOfUsersInFile; i++) {
+			String aUserInTheFile = (usersInFile.get(i)).getUsername();
+			//finding user object	
+			if (aUserInTheFile.equalsIgnoreCase(currentUser)) {
+				currentFollowing = usersInFile.get(i).getFollowingList();
+			}//end if
+		}//end for
+
+		int currentFollowingLength = currentFollowing.size();
+		for (int i = 0; i < currentFollowingLength; i++) {
+			String aUserInFollowing = (currentFollowing.get(i));
+			if (aUserInFollowing.equalsIgnoreCase(userToFollow)) {
+				return true;	
+			} 
+		}
+		return false;	
+	}
+//------------------------------------------------------------------------------------------------------ 
+
+
+//---CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
+	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
+	public static boolean doesUserExist(String userToSearchFor) {
 		ArrayList<User> usersToSearchList = readUserFile();
 		int lengthOfSearchArray = usersToSearchList.size();
 
-		for(int i =0; i< lengthOfSearchArray; i++) {
-			String currentUserName= (usersToSearchList.get(i)).getUsername();
-			if(currentUserName.equals(userToSearchFor)) {
-				System.out.println("We found the user: " + currentUserName); 
-				System.out.println(); 
-				break;
+		for(int i = 0; i< lengthOfSearchArray; i++) {
+			String currentUserName = (usersToSearchList.get(i)).getUsername();
+			if (currentUserName.equalsIgnoreCase(userToSearchFor)) {
+				//System.out.println("The user: " + currentUserName + " exists."); 
+				//System.out.println(); 
+				return true;	
 			} 
-			if ( (i == lengthOfSearchArray - 1 ) & (!currentUserName.equals(userToSearchFor)) ) {
-				System.out.println("We couldn't find: " + userToSearchFor + " in our system."); 	
-				System.out.println(); 
-			}
+			//if ( (i == lengthOfSearchArray - 1 ) & (!currentUserName.equals(userToSearchFor)) ) {
+				//System.out.println("The user: " + userToSearchFor + " does not exist."); 	
+				//System.out.println(); 
+				//return false;
+			//}
 		}
-
-		//} catch (Exception e) {
-			//System.out.println("Exception ocurred in searchUser().");
-			//System.out.println(e); 
-		//}
-		return userFound;
+		//This might be bogus
+		return false;
 	}
 //------------------------------------------------------------------------------------------------------ 
 	
