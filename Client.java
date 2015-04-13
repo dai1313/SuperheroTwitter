@@ -18,7 +18,10 @@ public class Client {
 			System.out.println("L: Login.");
 			System.out.println("R: Register.");
 			System.out.println("P: View public tweets.");			
-			System.out.println("Q: Quit program.\n");
+			
+			//This is commented out so the networked client does not drop
+				//people into the unix terminal. It still will of they ctrl+c though.
+			//System.out.println("Q: Quit program.\n");
 			
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
@@ -84,7 +87,7 @@ public class Client {
 		
 			//select correct method - menu option
 			if (menuOption.equals("T") || menuOption.equals("t")) {
-				//makeTweet(username);
+				makeTweet(username);
 			} else if (menuOption.equals("V") || menuOption.equals("v")) {
 				//viewTweets(username);
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
@@ -103,6 +106,17 @@ public class Client {
 		//return to top menu
 	}
 //------------------------------------------------------------------------------------------------------ 
+
+
+
+//----MAKE TWEET-----------------------------------------------------------------------------------------------
+
+	public static void makeTweet(String username) {
+		
+	}
+
+//------------------------------------------------------------------------------------------------------ 
+
 
 //----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
 	public static void userSettingsMenu(String username) {
