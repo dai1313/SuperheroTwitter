@@ -24,6 +24,10 @@ public class Tweet {
 		String[] split = fileline.split(" ");
 		author = split[0];
 		body = split[1];
+		
+		//remove the grave accents out of the body
+		body = body.replaceAll("`"," ");
+		
 		pubTweet = Boolean.parseBoolean(split[2]);
 		
 		//break up the following and fill array list
@@ -40,6 +44,9 @@ public class Tweet {
 		
 		//strip out the spaces
 		tagsf = tagsf.replaceAll("\\s","");
+		
+		//format the boday
+		body = body.replaceAll(" ","`");
 		
 		String ret = (author + " " + body + " " + pubTweet + " " + tagsf);
 		return ret;
