@@ -42,7 +42,7 @@ public class Client {
 		
 		kb.nextLine();
 		
-		System.out.println("\n\n(Michelle add flavor text please).\n\n");
+		System.out.println("\n\n(Welcome to the Avengers Initiative Communication System. Please be aware that all ).\n\n");
 		
 		
 		do	{
