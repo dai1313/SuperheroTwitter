@@ -10,7 +10,41 @@ public class Client {
 		
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
-		System.out.println("Welcome to the superhero twitter(rework this).\n\n");
+		
+		
+		System.out.println("              K###");
+		System.out.println("              ####");
+		System.out.println("             D####");
+		System.out.println("         W## #####");
+		System.out.println("       ###########");
+		System.out.println("     i###   ######");
+		System.out.println("    :##G   D######   W##W ###:###### ###  ### K######  ###### #######. ######E");
+		System.out.println("    ##     ### ###   ###  ### ###### ###  ### ######L  ###### ######## ######");
+		System.out.println("   ##     f### ###   ### ###W ###### ### ###.G######  t######.###,###tj######");
+		System.out.println("  D#K     ###G ###   ### ### ###W   K### ### ###      ###    ###  ### ###i");
+		System.out.println("  ##     i###  ###   ###L### ###    #### ### ###      ###    ###  ### ###");
+		System.out.println("  ##     ###E  ###   ######  ###    ####j##E ###      ###    ### E### ###");
+		System.out.println(" f#     .###   ###   ##D### t#####G.####### ###f.### ###### ###WG### ######");
+		System.out.println(" ##     ####    ##  t#####. ###### ######## ### #### ###### ######## #######");
+		System.out.println(" ##     ###    # #  ######  ###### ######## ### #### ###### #######  #######");
+		System.out.println(" ##    ##########   #####.  ###    ####### K### ### ####   :### ###i    ###,");
+		System.out.println(" K#   :###########  #####  ###D   W## #### ###  ### ###    ###  ###     ###");
+		System.out.println("  #W  ############f ####E  ###    ### #### ###  ### ###    ###  ###     ###");
+		System.out.println("  ##  ###########   ####   ###### ### ###G ### L##iG######,### #### ######W");
+		System.out.println("  ## ####      # #  ####  L#####,,##L ### W####### ###### ###L ###  ######");
+		System.out.println("   # ####       ## G###   ###### ###  ###  ####### ###### ###  ### i######");
+		System.out.println("   .####                                       #j");
+		System.out.println("    ####           ###                        f");
+		System.out.println("   ####GE        ###W");
+		System.out.println("   #### ####fL#####");
+		System.out.println("  ####L ;########");
+		System.out.print("  Press Enter:");
+		
+		kb.nextLine();
+		
+		System.out.println("\n\n(Michelle add flavor text please).\n\n");
+		
+		
 		do	{
 			System.out.println("Please enter your selection.");
 			
