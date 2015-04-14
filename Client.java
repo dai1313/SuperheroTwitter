@@ -172,13 +172,29 @@ public class Client {
 			if (menuOption.equals("B") || menuOption.equals("b")) {
 				editBio(username);
 			} else if (menuOption.equals("C") || menuOption.equals("c")) {
-				//changePassword(username);
+				changePassword(username);
 			}	
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
 		//go to main menu
 	}
 //--------------------------------------------------------------------------------------------------------------------- 
+
+//---CHANGE PASSWORD-------------------------------------------------------------------------------------------
+     public static void changePassword(String user){
+          Scanner kb = new Scanner(System.in);
+          ArrayList<User> users = readUserFile();
+          System.out.println("Please enter your new desired password: ");
+          String newPW = kb.nextLine();
+          
+          
+          
+     
+     
+} // end of changePassword()
+
+//-----------------------------------------------------------------------------------------------------------
+
 
 //---PRINT PUBLIC TWEETS-------------------------------------------------------------------------------------------
      public static void printPublicTweets(String user){
@@ -198,24 +214,27 @@ public class Client {
                     }     
                }
           } // endif user is ""
-          else{
+          else{ // if username is entered
+               
                for(int i = 0; i < tweets.size(); i++){
                     Tweet temp = tweets.get(i);
                     if(temp.pubTweet){
-                         System.out.print(temp.author);
+                         System.out.println(temp.author + ":");
+                         System.out.println("    " + temp.body);
+                         System.out.println();
                          
                     }
                     else{ // tweet is not public 
                          for(int k = 0; k < users.size(); k++){
                               User curr = users.get(k);
-                              if(curr.username == user){
+                              if(curr.username.equals(user)){
                                    ArrayList<String> following = curr.getFollowingList();
                                    for(int t = 0; t < following.size(); t++){
                                         String followingTemp = following.get(t);
-                                        if(followingTemp == temp.author){
+                                        if(followingTemp.equals(temp.author)){
                                              // String padded = temp.author + ("          ".substring(temp.author.length()));
                                              // System.out.print(padded);
-                                                System.out.println(temp.author + ":");
+                                                System.out.println("Private tweet from " + temp.author + ":");
                                                 System.out.println("    " + temp.body);
                                                 System.out.println();
                                         }
