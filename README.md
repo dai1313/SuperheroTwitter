@@ -1,27 +1,32 @@
 # SuperheroTwitter
 
-Here are methods in main that still need to get written
+Here are methods in main that still need to get written.-------------------
 
-register();
+-makeTweet(username)
 
-printPublicTweets(String);
+-viewTweets(username)
 
-makeTweet(username);
+-viewPublicTweets(username)
 
-viewTweets(username);
+-respond(username)
 
-viewPublicTweets(username);
+Done------------------------------
 
-searchUser(username);
+-register()
 
-followUser(username);
+-editBio(username)
 
-editBio(username);
+-printPublicTweets(String)
 
-changePassword(username);
+-followUser(username)
 
-searchHashtag(username);
+A requirement stuff if we have time---------------------
 
-respond(username);
+-changePassword(username)
+
+-searchHashtag(username)
+
+-searchUser(username)
+
 
 AND MORE!
