@@ -221,14 +221,14 @@ public class Client {
 		}
 
 				//print hashtags
-				int printHTCount = 0;
-				String aPrintableHT = "";
-				while ((!listOfTags.isEmpty()) & (printHTCount < listOfTags.size()) ) {
-					aPrintableHT = listOfTags.get(printHTCount);	
-					System.out.println("a hashtag is: "); 
-					System.out.println(aPrintableHT); 
-					printHTCount++;
-				}
+				//int printHTCount = 0;
+				//String aPrintableHT = "";
+				//while ((!listOfTags.isEmpty()) & (printHTCount < listOfTags.size()) ) {
+					//aPrintableHT = listOfTags.get(printHTCount);	
+					//System.out.println("a hashtag is: "); 
+					//System.out.println(aPrintableHT); 
+					//printHTCount++;
+				//}
 
 		//make a new message.
 		Tweet newTweet = new Tweet(username, body, isPub, listOfTags);
