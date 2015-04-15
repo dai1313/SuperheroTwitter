@@ -109,7 +109,8 @@ public class Client {
 //Search by hashtag is an A requirement thing, commented it out so I would feel better. :)
 //Obviously, you can still get to this option by pushing s.
 //			System.out.println("S: Search for a tweet by hashtag.");
-			System.out.println("R: Respond to a tweet.");			
+			System.out.println("R: Respond to a tweet.");
+               System.out.println("M: View your profile page.");			
 			System.out.println("Q: Log off.\n");
 			
 			//grab the input from the user
@@ -123,7 +124,7 @@ public class Client {
 			if (menuOption.equals("T") || menuOption.equals("t")) {
 				makeTweet(username);
 			} else if (menuOption.equals("V") || menuOption.equals("v")) {
-				//viewTweets(username);
+				viewTweets(username);
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
 				printPublicTweets(username);
 			} else if (menuOption.equals("L") || menuOption.equals("l")) {
@@ -134,7 +135,10 @@ public class Client {
 				//searchHashtag(username);
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
 				//respond(username);
-			}	
+			} else if (menuOption.equals("M") || menuOption.equals("m")) {
+                    viewProfile(username);
+               }	
+               
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
 		//return to top menu
@@ -180,17 +184,81 @@ public class Client {
 	}
 //--------------------------------------------------------------------------------------------------------------------- 
 
+
+//---CHANGE PASSWORD-------------------------------------------------------------------------------------------
+     public static void viewProfile(String user){
+          ArrayList<User> users = readUserFile();
+          ArrayList<Tweet> tweets = readTweetFile();
+          for(int i = 0; i < users.size(); i++){
+               User temp = users.get(i);
+               if(temp.username.equals(user)){
+                    System.out.println("Username: " + temp.username);
+                    System.out.println("Bio: " + temp.bio);
+                    System.out.println();
+                    System.out.println("Tweets:");
+                    
+                    for(int k = 0; k < tweets.size(); k++){
+                         Tweet tempTweet = tweets.get(k);
+                         if(tempTweet.author.equals(user)){
+                              System.out.println("You:");
+                              System.out.println("    " + tempTweet.body);
+                              System.out.println();
+                         }
+                    }
+               }    
+          }
+          System.out.println();
+     } // end of viewProfile()
+//--------------------------------------------------------------------------------------------------------------------- 
+//---CHANGE PASSWORD-------------------------------------------------------------------------------------------
+     public static void viewTweets(String user){
+          ArrayList<Tweet> tweets = readTweetFile();
+          ArrayList<User> users = readUserFile();
+          for(int i = 0; i < tweets.size(); i++){
+               Tweet temp = tweets.get(i);
+               for(int k = 0; k < users.size(); k++){
+                    User curr = users.get(k);
+                    if(curr.username.equals(user)){
+                         ArrayList<String> following = curr.getFollowingList();
+                         for(int t = 0; t < following.size(); t++){
+                              String followingTemp = following.get(t);
+                              if(followingTemp.equals(temp.author)){
+                                   // String padded = temp.author + ("          ".substring(temp.author.length()));
+                                   // System.out.print(padded);
+                                   System.out.println(temp.author + ":");
+                                   System.out.println("    " + temp.body);
+                                   System.out.println();
+                              }
+                         }
+                    }     
+               }
+           }
+
+          
+     }// of viewTweets()
+//--------------------------------------------------------------------------------------------------------------------- 
 //---CHANGE PASSWORD-------------------------------------------------------------------------------------------
      public static void changePassword(String user){
           Scanner kb = new Scanner(System.in);
           ArrayList<User> users = readUserFile();
           System.out.println("Please enter your new desired password: ");
           String newPW = kb.nextLine();
-          
-          
-          
-     
-     
+          for(int i = 0; i < users.size(); i++){
+               if(users.get(i).username.equals(user)){
+                    users.get(i).password = newPW;    
+               }     
+          }
+          System.out.println("New password will be " + newPW + ". Enter Y to confirm, or N to cancel: ");
+          String decision = kb.nextLine();
+          if(decision.equals("Y") || decision.equals("y")){
+               writeUserFile(users);
+               System.out.println("Your password has been changed.");
+          }
+          else if(decision.equals("N") || decision.equals("n")){
+               System.out.println("The password change has been cancelled.");
+          }
+          System.out.println();
+         
 } // end of changePassword()
 
 //-----------------------------------------------------------------------------------------------------------
