@@ -4,10 +4,13 @@
 	
 import java.util.*;
 import java.io.*;
+import java.lang.System;
 
 public class Client {
 	public static void main (String args[]) {
-		
+	
+		makeTweet("midnapeach");
+
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		
@@ -38,11 +41,15 @@ public class Client {
 		System.out.println("   ####GE        ###W");
 		System.out.println("   #### ####fL#####");
 		System.out.println("  ####L ;########");
+	
+		System.out.println(); 
+		System.out.println(); 
+		System.out.println(); 
 		System.out.print("  Press Enter:");
 		
 		kb.nextLine();
 		
-		System.out.println("\n\n(Welcome to the Avengers Initiative Communication System. Please be aware that all ).\n\n");
+		System.out.println("\n\nWelcome to the Avengers Initiative Communication System.\n\n");
 		
 		
 		do	{
@@ -51,7 +58,7 @@ public class Client {
 			//display the menu
 			System.out.println("L: Login.");
 			System.out.println("R: Register.");
-			System.out.println("P: View public tweets.");			
+			System.out.println("P: View public messages.");			
 			
 			//This is commented out so the networked client does not drop
 				//people into the unix terminal. It still will of they ctrl+c though.
@@ -69,10 +76,10 @@ public class Client {
 				register();
 			} else if (menuOption.equals("P") || menuOption.equals("p")) {
 				printPublicTweets("");
-					//print public tweets with an empty name will print for unregistered
+					//print public messages with an empty name will print for unregistered
 					//if you send a username as a parameter then wit will print for a user
 						//this is important because if you are printing for a user they will...
-						//... see the private tweets of their followers
+						//... see the private messages of their followers
 							//i'm considering making... just check the issues page on the github please
 			}
 		} while (!menuOption.equals("QUIT") && !menuOption.equals("quit"));
@@ -97,19 +104,17 @@ public class Client {
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
-			System.out.println("T: Make a tweet.");
-			System.out.println("V: View tweets.");
-			System.out.println("P: View public tweets.");			
+			System.out.println("T: Create a new message.");
+			System.out.println("V: View messages.");
+			System.out.println("P: View public messages.");			
 			System.out.println("L: Lookup/Follow user.");
 				//S: Search users
 				//F: Follow user
 			System.out.println("U: Edit user settings.");
 				//B: Edit bio
 				//C: Change password
-//Search by hashtag is an A requirement thing, commented it out so I would feel better. :)
-//Obviously, you can still get to this option by pushing s.
-//			System.out.println("S: Search for a tweet by hashtag.");
-			System.out.println("R: Respond to a tweet.");			
+			System.out.println("S: Search for a message by hashtag.");
+			System.out.println("R: Respond to a message.");			
 			System.out.println("Q: Log off.\n");
 			
 			//grab the input from the user
@@ -144,10 +149,154 @@ public class Client {
 
 
 //----MAKE TWEET-----------------------------------------------------------------------------------------------
-
 	public static void makeTweet(String username) {
 		
+		Scanner kb = new Scanner(System.in);
+		//prompt for message body
+		String prompt = selectRandomPrompt();
+		System.out.println(prompt); 
+		System.out.println("Press enter when you have finished typing."); 	
+		//get body input
+		String body = kb.nextLine();	
+		int bodyLength = body.length();
+		//System.out.println("You wrote: ");
+		//System.out.println(body); 
+		
+//not working
+//FIX THIS-------------------------------------------------------------------HEYYYYYYYYYYYYYYY FIX THAT
+		/*while (bodyLength <= 0) {
+			System.out.println("You can't have a blank message! Try again or press q to quit."); 
+			body = kb.nextLine();
+			if (body.equalsIgnoreCase("q")) {
+				return;	
+			}
+		}*/
+//bleghhh
+
+		//limit of num chars - 140
+		while (bodyLength > 140) {
+			System.out.println("I'm sorry, but the message you have typed is too long. :( "); 
+			System.out.println("Please enter a new shorter message."); 
+			body = kb.nextLine();
+		}
+
+		//set is public or private. all are public by default?
+		boolean isPub = true;
+		System.out.println("Will this be a private message? [y/n]"); 
+		String pubPrivateAns = kb.nextLine();
+		if (pubPrivateAns.equalsIgnoreCase("Y") || pubPrivateAns.equalsIgnoreCase("YES")) {
+			isPub = false;
+		}
+
+		//set hashtags
+		ArrayList<String> listOfTags = new ArrayList<String>();
+
+		//parse body for #s.
+		//loop through body, check if char is a #.
+		if (body.contains("#")) {
+			int count = 0;
+			while (count < bodyLength) {
+				if (body.charAt(count) ==  '#' ) {	
+					//System.out.println("found a hashtag!  "); 
+				//if it is, get the space delimited word after that
+					int startOfHashtag = count;
+					int countBetweenHashtags = 0;
+					int endOfHashtag = count;
+					int charCounter = count;
+					while ((charCounter < bodyLength - 1) & (body.charAt(charCounter) != ' ')) {
+						countBetweenHashtags++;
+						//System.out.println("charCounter is: " + charCounter); 
+						charCounter++;
+					}//this is not a space. keep going
+				//holy crap I found a space
+				endOfHashtag = endOfHashtag + countBetweenHashtags + 1;
+				//System.out.println("here, startOfHashtag is: " + startOfHashtag + ", and endOfHashtag is: " + endOfHashtag + "."); 
+				//if you want to keep the hashtags with the hashtag sign, then delete this plus one. 
+				//if you want to strip off the hashtag symbol, add 1 to startOfHashtag when you pass it in
+
+				String theActualHashtag = body.substring(startOfHashtag + 1, endOfHashtag);
+				//save it as a hashtag in the array list
+				listOfTags.add(theActualHashtag);	
+				
+				} //end if. this is not a hashtag. keep going.
+				count++;
+			}
+		} else {
+			//there are no hashtags. wasn't really sure what to do
+			listOfTags.add("NULL");
+//FIX THIS-------------------------------------------------------------------HEYYYYYYYYYYYYYYY FIX THAT
+		}
+
+				//print hashtags
+				int printHTCount = 0;
+				String aPrintableHT = "";
+				while ((!listOfTags.isEmpty()) & (printHTCount < listOfTags.size()) ) {
+					aPrintableHT = listOfTags.get(printHTCount);	
+					System.out.println("a hashtag is: "); 
+					System.out.println(aPrintableHT); 
+					printHTCount++;
+				}
+
+				System.exit(1); 
+
+		//make a new message.
+		Tweet newTweet = new Tweet(username, body, isPub, listOfTags);
+
+
+		//method to return an array list of hashtag things
+		//they should be able to do more than one hash tag
+		//getHashtags(messageBody);
+
+		//-------------------------------------
+
+		//no user input-
+		//MAKE THESE AS CLOSE AS POSSIBLE
+		
+		//read the message file 
+
+		//add message to array list that the read message thing returns,
+
+		//write message file
+
+	
 	}
+//------------------------------------------------------------------------------------------------------ 
+
+
+//---SELECT RANDOM PROMPT-------------------------------------------------------------------------------------------- 		
+//this function returns a "random" prompt each time it is called. This is Michelle's CodeBaby.
+public static String selectRandomPrompt() {
+	//select a random message prompt
+		Random random = new Random();
+		int maxNum = 6;
+		int randomNum = random.nextInt(maxNum) + 1;
+		//System.out.println("random number is: " + randomNum); 
+
+		String randomPrompt = "Type your message here: ";
+
+			if (randomNum == 1) { 	 	randomPrompt = "What's on your mind?";
+		} else if (randomNum == 2) { 	randomPrompt = "Say something!";
+		} else if (randomNum == 3) {	randomPrompt = "What's up?";
+		} else if (randomNum == 4) { 	randomPrompt = "Anything new to report?";
+		} else if (randomNum == 5) { 	randomPrompt = "What's happening?";
+		} else if (randomNum == 6) {	randomPrompt = "How are you doing today?";
+		} else { 						randomPrompt = "Tell me a secret~"; 
+		}
+		
+	return randomPrompt;
+}
+//------------------------------------------------------------------------------------------------------ 
+
+
+//----PROFILE STUFF-------------------------------------------------------------------------------------------------- 
+//extra function
+
+//take in a username, this is the current user
+
+//print name at top
+//prints users bio
+
+//then print all of their messages 
 
 //------------------------------------------------------------------------------------------------------ 
 
@@ -198,7 +347,7 @@ public class Client {
 
 //---PRINT PUBLIC TWEETS-------------------------------------------------------------------------------------------
      public static void printPublicTweets(String user){
-          // Load tweets
+          // Load messages
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
           
@@ -501,6 +650,14 @@ public class Client {
 	}
 //------------------------------------------------------------------------------------------------------ 
 	
+//----SEARCH FUNCTION-------------------------------------------------------------------------------------------------- 
+	//take keyword user types in and look through bios find matching words in bio
+	//return a list of users
+
+
+
+//------------------------------------------------------------------------------------------------------ 
+
 //---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
 	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
