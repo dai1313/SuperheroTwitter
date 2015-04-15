@@ -9,8 +9,6 @@ import java.lang.System;
 public class Client {
 	public static void main (String args[]) {
 	
-		makeTweet("midnapeach");
-
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		
@@ -149,7 +147,7 @@ public class Client {
 
 
 //----MAKE TWEET-----------------------------------------------------------------------------------------------
-	public static void makeTweet(String username) {
+	public static ArrayList<String> makeTweet(String username) {
 		
 		Scanner kb = new Scanner(System.in);
 		//prompt for message body
@@ -192,12 +190,10 @@ public class Client {
 		ArrayList<String> listOfTags = new ArrayList<String>();
 
 		//parse body for #s.
-		//loop through body, check if char is a #.
 		if (body.contains("#")) {
 			int count = 0;
 			while (count < bodyLength) {
 				if (body.charAt(count) ==  '#' ) {	
-					//System.out.println("found a hashtag!  "); 
 				//if it is, get the space delimited word after that
 					int startOfHashtag = count;
 					int countBetweenHashtags = 0;
@@ -210,14 +206,11 @@ public class Client {
 					}//this is not a space. keep going
 				//holy crap I found a space
 				endOfHashtag = endOfHashtag + countBetweenHashtags + 1;
-				//System.out.println("here, startOfHashtag is: " + startOfHashtag + ", and endOfHashtag is: " + endOfHashtag + "."); 
 				//if you want to keep the hashtags with the hashtag sign, then delete this plus one. 
 				//if you want to strip off the hashtag symbol, add 1 to startOfHashtag when you pass it in
-
 				String theActualHashtag = body.substring(startOfHashtag + 1, endOfHashtag);
 				//save it as a hashtag in the array list
 				listOfTags.add(theActualHashtag);	
-				
 				} //end if. this is not a hashtag. keep going.
 				count++;
 			}
@@ -237,15 +230,10 @@ public class Client {
 					printHTCount++;
 				}
 
-				System.exit(1); 
-
 		//make a new message.
 		Tweet newTweet = new Tweet(username, body, isPub, listOfTags);
 
-
-		//method to return an array list of hashtag things
-		//they should be able to do more than one hash tag
-		//getHashtags(messageBody);
+		//make the thing return some hashtags
 
 		//-------------------------------------
 
@@ -253,12 +241,15 @@ public class Client {
 		//MAKE THESE AS CLOSE AS POSSIBLE
 		
 		//read the message file 
+		ArrayList<Tweet> currentMessages = readTweetFile();	
 
 		//add message to array list that the read message thing returns,
+		currentMessages.add(newTweet);
 
 		//write message file
+		writeTweetFile(currentMessages);	
 
-	
+		return listOfTags;	
 	}
 //------------------------------------------------------------------------------------------------------ 
 
@@ -287,18 +278,6 @@ public static String selectRandomPrompt() {
 }
 //------------------------------------------------------------------------------------------------------ 
 
-
-//----PROFILE STUFF-------------------------------------------------------------------------------------------------- 
-//extra function
-
-//take in a username, this is the current user
-
-//print name at top
-//prints users bio
-
-//then print all of their messages 
-
-//------------------------------------------------------------------------------------------------------ 
 
 
 //----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
@@ -522,8 +501,9 @@ public static String selectRandomPrompt() {
 			System.out.println("User Lookup/Follow Menu.");
 			
 			//display the menu
-			System.out.println("S: Search users.");
+			System.out.println("S: Search users.");	
 			System.out.println("F: Follow user.");	
+			System.out.println("D: Display other user's Profiles.");
 			System.out.println("Q: Return to main menu.\n");
 			
 			//grab the input from the user
@@ -535,6 +515,8 @@ public static String selectRandomPrompt() {
 				//searchUser(username);
 			} else if (menuOption.equals("F") || menuOption.equals("f")) {
 				followUser(username);
+			} else if (menuOption.equals("D") || menuOption.equals("d")) {
+				displayOthersProfile();
 			}	
 		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
 		
@@ -597,7 +579,7 @@ public static String selectRandomPrompt() {
 
 	}//end follow user
 //------------------------------------------------------------------------------------------------------ 
-	
+
 //--IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
 	public static boolean isAlreadyFollowing(String currentUser, String userToFollow) {
 		//find the actual User object of current user
@@ -635,28 +617,45 @@ public static String selectRandomPrompt() {
 		for(int i = 0; i< lengthOfSearchArray; i++) {
 			String currentUserName = (usersToSearchList.get(i)).getUsername();
 			if (currentUserName.equalsIgnoreCase(userToSearchFor)) {
-				//System.out.println("The user: " + currentUserName + " exists."); 
-				//System.out.println(); 
 				return true;	
 			} 
-			//if ( (i == lengthOfSearchArray - 1 ) & (!currentUserName.equals(userToSearchFor)) ) {
-				//System.out.println("The user: " + userToSearchFor + " does not exist."); 	
-				//System.out.println(); 
-				//return false;
-			//}
 		}
 		//This might be bogus
 		return false;
 	}
 //------------------------------------------------------------------------------------------------------ 
+
+
+//------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
+	public static void displayOthersProfile() {
+		Scanner kb = new Scanner(System.in);
+		String userToSearchFor = "";
+		String userFound = "";
+			
+		System.out.println("Please enter the username who's profile you would like to display: "); 
+		userToSearchFor = kb.nextLine();
+		System.out.println(); 
+		
+		if (doesUserExist(userToSearchFor)) {
+			//display tylers profile function
+			System.out.println("I'm displaying the profile.  "); 
+		} else {
+			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
+			System.out.println("---------------------------"); 
+		}
+	}
+//------------------------------------------------------------------------------------------------------ 
 	
-//----SEARCH FUNCTION-------------------------------------------------------------------------------------------------- 
+
+
+//----FANCY SEARCH FUNCTION-------------------------------------------------------------------------------------------------- 
+	//austin I don't know what you want to do here but heres a spot
 	//take keyword user types in and look through bios find matching words in bio
 	//return a list of users
 
 
-
 //------------------------------------------------------------------------------------------------------ 
+
 
 //---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
 	public static ArrayList<User> readUserFile() {
