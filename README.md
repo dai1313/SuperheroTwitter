@@ -1,16 +1,19 @@
 # SuperheroTwitter
+# We are so awesome.
 
 Here are methods in main that still need to get written.-------------------
 
--makeTweet(username)
+-respond(username)
+
+-searchHashtag(username)
+
+Done------------------------------
 
 -viewTweets(username)
 
 -viewPublicTweets(username)
 
--respond(username)
-
-Done------------------------------
+-makeTweet(username)
 
 -register()
 
@@ -20,11 +23,13 @@ Done------------------------------
 
 -followUser(username)
 
-A requirement stuff if we have time---------------------
-
 -changePassword(username)
 
--searchHashtag(username)
+A requirement stuff if we have time---------------------
+
+
+
+
 
 -searchUser(username)
 
