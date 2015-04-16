@@ -98,12 +98,11 @@ public class Client {
 		do	{
 			
 			System.out.println("----------------------------------------------------------"); 
-		
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
 			System.out.println("T: Create a new message.");
-			System.out.println("V: View messages.");
+			System.out.println("V: View messages of people you're following.");
 			System.out.println("P: View public messages.");			
 			System.out.println("L: Lookup/Follow user.");
 				//S: Search users
@@ -119,8 +118,6 @@ public class Client {
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
-			
-			
 			System.out.println("----------------------------------------------------------"); 
 		
 			//select correct method - menu option
@@ -135,9 +132,9 @@ public class Client {
 			} else if (menuOption.equals("U") || menuOption.equals("u")) {
 				userSettingsMenu(username);
 			} else if (menuOption.equals("S") || menuOption.equals("s")) {
-				//searchHashtag(username);
+				searchHashtag();
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
-                    System.out.println("Which user would you like to send a tweet to? (Please enter username, and press enter)");
+                    System.out.println("Which user would you like to send a message to? (Please enter username, and press enter)");
                     String tweetTo = kb.nextLine();
                     if(isUser(tweetTo)){
 				     tweetAt(username, tweetTo);
@@ -153,8 +150,70 @@ public class Client {
 		
 		//return to top menu
 	}
-//------------------------------------------------------------------------------------------------------ 
+//--END MAIN MENU FUNCTION-------------------------------------------------------------------------------------------- 
 
+//--LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
+	public static void lookupUser(String username) {
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		
+		do	{
+			System.out.println("User Lookup/Follow Menu.");
+			
+			//display the menu
+			//System.out.println("S: Search users.");	
+			System.out.println("F: Follow user.");	
+			System.out.println("D: Display other user's Profiles.");
+			System.out.println("A: Display all other users.");
+			System.out.println("Q: Return to main menu.\n");
+			
+			//grab the input from the user
+			System.out.println("Enter your choice: ");
+			menuOption = kb.nextLine();
+			
+			//select correct method - menu option
+			if (menuOption.equals("S") || menuOption.equals("s")) {
+				//searchUser(username);
+			} else if (menuOption.equals("F") || menuOption.equals("f")) {
+				followUser(username);
+			} else if (menuOption.equals("A") || menuOption.equals("a")) {
+				displayAllUsers();
+			} else if (menuOption.equals("D") || menuOption.equals("d")) {
+				displayOthersProfile();
+			}	
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		//go to main menu
+	}
+//--END LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
+
+//----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
+	public static void userSettingsMenu(String username) {
+		Scanner kb = new Scanner(System.in);
+		String menuOption = "";
+		do	{
+			System.out.println("Please enter your selection.");
+			
+			//display the menu
+			System.out.println("B: Edit Bio.");
+			System.out.println("C: Change password.");	
+			System.out.println("Q: Return to main menu.\n");
+			
+			//grab the input from the user
+			System.out.println("Enter your choice: ");
+			menuOption = kb.nextLine();
+			
+			//select correct method - menu option
+			if (menuOption.equals("B") || menuOption.equals("b")) {
+				editBio(username);
+			} else if (menuOption.equals("C") || menuOption.equals("c")) {
+				changePassword(username);
+			}	
+		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
+		
+		//go to main menu
+	}
+//--END USER SETTINGS MENU-----------------------------------------------------------------------------------------------
+//ooooooooooooooooo-^^^^-MENUS ABOVE-^^^^-ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 
 //----MAKE TWEET-----------------------------------------------------------------------------------------------
@@ -191,7 +250,7 @@ public class Client {
 
 		//set is public or private. all are public by default?
 		boolean isPub = true;
-		System.out.println("Will this be a private message? [y/n]"); 
+		System.out.println("Will this be a private message? [y/N]"); 
 		String pubPrivateAns = kb.nextLine();
 		if (pubPrivateAns.equalsIgnoreCase("Y") || pubPrivateAns.equalsIgnoreCase("YES")) {
 			isPub = false;
@@ -231,26 +290,9 @@ public class Client {
 //FIX THIS-------------------------------------------------------------------HEYYYYYYYYYYYYYYY FIX THAT
 		}
 
-				//print hashtags
-				//int printHTCount = 0;
-				//String aPrintableHT = "";
-				//while ((!listOfTags.isEmpty()) & (printHTCount < listOfTags.size()) ) {
-					//aPrintableHT = listOfTags.get(printHTCount);	
-					//System.out.println("a hashtag is: "); 
-					//System.out.println(aPrintableHT); 
-					//printHTCount++;
-				//}
-
 		//make a new message.
 		Tweet newTweet = new Tweet(username, body, isPub, listOfTags);
 
-		//make the thing return some hashtags
-
-		//-------------------------------------
-
-		//no user input-
-		//MAKE THESE AS CLOSE AS POSSIBLE
-		
 		//read the message file 
 		ArrayList<Tweet> currentMessages = readTweetFile();	
 
@@ -262,106 +304,102 @@ public class Client {
 
 		return listOfTags;	
 	}
-//------------------------------------------------------------------------------------------------------ 
+//--END MAKE A TWEET---------------------------------------------------------------------------------------------------- 
 
-
-//---SELECT RANDOM PROMPT-------------------------------------------------------------------------------------------- 		
-//this function returns a "random" prompt each time it is called. This is Michelle's CodeBaby.
-public static String selectRandomPrompt() {
-	//select a random message prompt
-		Random random = new Random();
-		int maxNum = 6;
-		int randomNum = random.nextInt(maxNum) + 1;
-		//System.out.println("random number is: " + randomNum); 
-
-		String randomPrompt = "Type your message here: ";
-
-			if (randomNum == 1) { 	 	randomPrompt = "What's on your mind?";
-		} else if (randomNum == 2) { 	randomPrompt = "Say something!";
-		} else if (randomNum == 3) {	randomPrompt = "What's up?";
-		} else if (randomNum == 4) { 	randomPrompt = "Anything new to report?";
-		} else if (randomNum == 5) { 	randomPrompt = "What's happening?";
-		} else if (randomNum == 6) {	randomPrompt = "How are you doing today?";
-		} else { 						randomPrompt = "Tell me a secret~"; 
-		}
-		
-	return randomPrompt;
-}
-//------------------------------------------------------------------------------------------------------ 
-
-
-
-//----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
-	public static void userSettingsMenu(String username) {
+//--SEARCH BY HASHTAG---------------------------------------------------------------------------------------------------
+	public static void searchHashtag() {
+		String hashtagToSearch = "";
 		Scanner kb = new Scanner(System.in);
-		String menuOption = "";
-		do	{
-			System.out.println("Please enter your selection.");
-			
-			//display the menu
-			System.out.println("B: Edit Bio.");
-			System.out.println("C: Change password.");	
-			System.out.println("Q: Return to main menu.\n");
-			
-			//grab the input from the user
-			System.out.println("Enter your choice: ");
-			menuOption = kb.nextLine();
-			
-			//select correct method - menu option
-			if (menuOption.equals("B") || menuOption.equals("b")) {
-				editBio(username);
-			} else if (menuOption.equals("C") || menuOption.equals("c")) {
-				changePassword(username);
-			}	
-		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
-		
-		//go to main menu
-	}
-//--------------------------------------------------------------------------------------------------------------------- 
+		System.out.println("Please enter the hashtag you would like to find matching messages for. (Don't actually type the #)."); 	
+		hashtagToSearch = kb.nextLine();
+		System.out.println(); 
+	
+		//look through tweet file
+		ArrayList<Tweet> allTheTweets = readTweetFile();	
+		int tweetListSize = allTheTweets.size();
 
+		System.out.println("The messages that contain this hashtag are: "); 
+		//then go through that and grab all of the hashtags
+		for (int i = 0; i < tweetListSize; i++) {
+			ArrayList<String> hashtagList = allTheTweets.get(i).getTags();	
+				for (int z = 0; z < hashtagList.size(); z++) {
+					if (hashtagList.get(z).equalsIgnoreCase(hashtagToSearch) && (allTheTweets.get(i).getPubTweet()) {
+						System.out.println(allTheTweets.get(i)); 
+						//FIX TO MAKE IT PRINT PRETTIER
+					
+					}
+				}
+		}
+		//then search through that crap
+
+	}
+//---------------------------------------------------------------------------------------------------------------------- 
 
 //---VIEW PROFILE-------------------------------------------------------------------------------------------
-     public static void viewProfile(String user){
+     public static void viewProfile(String user) {
           ArrayList<User> users = readUserFile();
           ArrayList<Tweet> tweets = readTweetFile();
-          for(int i = 0; i < users.size(); i++){
+          
+		  for (int i = 0; i < users.size(); i++) {
                User temp = users.get(i);
-               if(temp.username.equals(user)){
+               if(temp.username.equalsIgnoreCase(user)){
                     System.out.println("Username: " + temp.username);
                     System.out.println("Bio: " + temp.bio);
                     System.out.println();
-                    System.out.println("Public Tweets:");
+                    System.out.println("Followed Users: " + temp.getFollowingList()); 
+                    System.out.println();
+					System.out.println("Public Messages:");
                     
                     for(int k = 0; k < tweets.size(); k++){
                          Tweet tempTweet = tweets.get(k);
-                         if(tempTweet.author.equals(user) && tempTweet.pubTweet){
-                              
-                              System.out.println(user + ":");
+                         if (tempTweet.author.equalsIgnoreCase(user) && tempTweet.pubTweet){
+                              System.out.println(temp.username + ":");
                               System.out.println("    " + tempTweet.body);
                               System.out.println();
                           }
-                                
                     } 
                  } 
             } 
           System.out.println();
+	      System.out.println("---------------------------------------------------------------"); 
      } // end of viewProfile()
 //--------------------------------------------------------------------------------------------------------------------- 
+
+//------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
+	public static void displayOthersProfile() {
+		Scanner kb = new Scanner(System.in);
+		String userToSearchFor = "";
+		String userFound = "";
+			
+		System.out.println("Please enter the username who's profile you would like to display: "); 
+		userToSearchFor = kb.nextLine();
+		System.out.println(); 
+		
+		if (doesUserExist(userToSearchFor)) {
+			viewProfile(userToSearchFor);
+		} else {
+			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
+			System.out.println("-----------------------------------------------------------"); 
+		}
+	}
+//------------------------------------------------------------------------------------------------------ 
 
 
 //---VIEW TWEETS-------------------------------------------------------------------------------------------
      public static void viewTweets(String user){
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
-          for(int i = 0; i < tweets.size(); i++){
+          
+		  for (int i = 0; i < tweets.size(); i++) {
                Tweet temp = tweets.get(i);
-               for(int k = 0; k < users.size(); k++){
+               for (int k = 0; k < users.size(); k++) {
                     User curr = users.get(k);
-                    if(curr.username.equals(user)){
+
+                    if (curr.username.equalsIgnoreCase(user)) {
                          ArrayList<String> following = curr.getFollowingList();
                          for(int t = 0; t < following.size(); t++){
                               String followingTemp = following.get(t);
-                              if(followingTemp.equals(temp.author)){
+                              if(followingTemp.equalsIgnoreCase(temp.author)){
                                    // String padded = temp.author + ("          ".substring(temp.author.length()));
                                    // System.out.print(padded);
                                    System.out.println(temp.author + ":");
@@ -372,35 +410,65 @@ public static String selectRandomPrompt() {
                     }     
                }
            }
-
           
-     }// of viewTweets()
+     }// end of viewTweets()
 //--------------------------------------------------------------------------------------------------------------------- 
 
 //---TWEET AT-------------------------------------------------------------------------------------------
      public static void tweetAt(String user, String tweetAt){
-          ArrayList<Tweet> tweets = readTweetFile();
           Scanner kb = new Scanner(System.in);
           System.out.println("What would you like to say to @" + tweetAt + "? ");
           String tweetBody = kb.nextLine();
-          System.out.println("Would you like this to be a private tweet? Enter Y for yes, or just hit enter for no.");
+          System.out.println("Would you like this to be a private message? Enter Y for yes, or just hit enter for no.");
           String privateT = kb.nextLine();
           boolean makePrivate;
+          
           if(privateT.equals("Y") || privateT.equals("y")){
                makePrivate = true;
           }
           else{
                makePrivate = false;
           }
-          ArrayList<String> empty = new ArrayList();
-          String combo = "@" + tweetAt + " " + tweetBody;
-          // WHATEVER YOU GUYS FIGURE OUT THAT WE NEED TO DO TO MAKE A TWEET,
-          //                                    DO IT HERE    \/    TOO
-          Tweet tweet = new Tweet(user, combo, makePrivate, empty);
+          ArrayList<String> empty = new ArrayList<String>();
+          String combo = "@" + tweetAt + " : " + tweetBody;
+		//set hashtags
+		ArrayList<String> listOfTags = new ArrayList<String>();
+		int bodyLength = tweetBody.length(); 
+
+		//parse body for #s.
+		if (tweetBody.contains("#")) {
+			int count = 0;
+			while (count < bodyLength) {
+				if (tweetBody.charAt(count) ==  '#' ) {	
+				//if it is, get the space delimited word after that
+					int startOfHashtag = count;
+					int countBetweenHashtags = 0;
+					int endOfHashtag = count;
+					int charCounter = count;
+					while ((charCounter < bodyLength - 1) & (tweetBody.charAt(charCounter) != ' ')) {
+						countBetweenHashtags++;
+						//System.out.println("charCounter is: " + charCounter); 
+						charCounter++;
+					}//this is not a space. keep going
+				//holy crap I found a space
+				endOfHashtag = endOfHashtag + countBetweenHashtags + 1;
+				//if you want to keep the hashtags with the hashtag sign, then delete this plus one. 
+				//if you want to strip off the hashtag symbol, add 1 to startOfHashtag when you pass it in
+				String theActualHashtag = tweetBody.substring(startOfHashtag + 1, endOfHashtag);
+				//save it as a hashtag in the array list
+				listOfTags.add(theActualHashtag);	
+				} //end if. this is not a hashtag. keep going.
+				count++;
+			}
+		} else {
+			listOfTags.add("NULL");
+		}
+		  
+		  ArrayList<Tweet> tweets = readTweetFile();
+          Tweet tweet = new Tweet(user, combo, makePrivate, listOfTags);
           tweets.add(tweet);
           writeTweetFile(tweets);
-          System.out.println("Tweet sent: @" + tweetAt + " " + tweetBody);
-          
+          //System.out.println("Message sent: @" + tweetAt + " : " + tweetBody);
      } // end of tweetTo(user)
 //---------------------------------------------------------------------------------------------------------------
 
@@ -410,14 +478,13 @@ public static String selectRandomPrompt() {
           boolean isUser = false;
           for(int i = 0; i < users.size(); i++){
                User temp = users.get(i);
-               if(temp.username.equals(user)){
+               if(temp.username.equalsIgnoreCase(user)){
                     isUser = true;
                }
           }
           return isUser;
      }// end of isUser()
 //----------------------------------------------------------------------------------------------------------
-
 
 //---CHANGE PASSWORD-------------------------------------------------------------------------------------------
      public static void changePassword(String user){
@@ -426,7 +493,7 @@ public static String selectRandomPrompt() {
           System.out.println("Please enter your new desired password: ");
           String newPW = kb.nextLine();
           for(int i = 0; i < users.size(); i++){
-               if(users.get(i).username.equals(user)){
+               if(users.get(i).username.equalsIgnoreCase(user)){
                     users.get(i).password = newPW;    
                }     
           }
@@ -440,11 +507,8 @@ public static String selectRandomPrompt() {
                System.out.println("The password change has been cancelled.");
           }
           System.out.println();
-         
-} // end of changePassword()
-
+	} // end of changePassword()
 //-----------------------------------------------------------------------------------------------------------
-
 
 //---PRINT PUBLIC TWEETS-------------------------------------------------------------------------------------------
      public static void printPublicTweets(String user){
@@ -452,10 +516,10 @@ public static String selectRandomPrompt() {
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
           
-          if(user == ""){          
-               for(int i = 0; i < tweets.size(); i++){
+          if (user == "") {          
+               for (int i = 0; i < tweets.size(); i++) {
                     Tweet temp = tweets.get(i);
-                    if(temp.pubTweet){
+                    if (temp.pubTweet) {
                         // String padded = temp.author + ("          ".substring(temp.author.length()));
                         // System.out.print(padded);
                          System.out.println(temp.author + ":");
@@ -477,11 +541,11 @@ public static String selectRandomPrompt() {
                     else{ // tweet is not public 
                          for(int k = 0; k < users.size(); k++){
                               User curr = users.get(k);
-                              if(curr.username.equals(user)){
+                              if(curr.username.equalsIgnoreCase(user)){
                                    ArrayList<String> following = curr.getFollowingList();
                                    for(int t = 0; t < following.size(); t++){
                                         String followingTemp = following.get(t);
-                                        if(followingTemp.equals(temp.author)){
+                                        if(followingTemp.equalsIgnoreCase(temp.author)){
                                              // String padded = temp.author + ("          ".substring(temp.author.length()));
                                              // System.out.print(padded);
                                                 System.out.println("Private tweet from " + temp.author + ":");
@@ -497,7 +561,7 @@ public static String selectRandomPrompt() {
           }
       
      } // end of PrintPublicTweets()
-//------------------------------------------------------------------------------------------------------ 
+//--END PRINT PUB TWEET------------------------------------------------------------------------------------------------- 
 
 	
 //---REGISTER A NEW USER------------------------------------------------------------------------------------- 
@@ -514,7 +578,7 @@ public static String selectRandomPrompt() {
 		password = kb.nextLine();
 		
 		if (!validatePassword(password)) {
-			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			System.out.println("This password does not meet the minimum requirements. \n");
 			return;
 		}
 		
@@ -531,7 +595,6 @@ public static String selectRandomPrompt() {
 		User a = new User(username, password, "NULL", "This user has not written a bio yet.");
 		users.add(a);
 		writeUserFile(users);
-		
 		
 		//prompt for bio entry
 		System.out.println("Would you like to write a bio for your profile?\n[y/N]: ");
@@ -612,47 +675,7 @@ public static String selectRandomPrompt() {
 			System.out.println("Could not find username.");
 		}
 	}
-//------------------------------------------------------------------------------------------------------ 
-
-//--LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
-	public static void lookupUser(String username) {
-		Scanner kb = new Scanner(System.in);
-		String menuOption = "";
-		
-		do	{
-			System.out.println("User Lookup/Follow Menu.");
-			
-			//display the menu
-			System.out.println("S: Search users.");	
-			System.out.println("F: Follow user.");	
-			System.out.println("D: Display other user's Profiles.");
-			System.out.println("Q: Return to main menu.\n");
-			
-			//grab the input from the user
-			System.out.println("Enter your choice: ");
-			menuOption = kb.nextLine();
-			
-			//select correct method - menu option
-			if (menuOption.equals("S") || menuOption.equals("s")) {
-				//searchUser(username);
-			} else if (menuOption.equals("F") || menuOption.equals("f")) {
-				followUser(username);
-			} else if (menuOption.equals("D") || menuOption.equals("d")) {
-				displayOthersProfile();
-			}	
-		} while (!menuOption.equals("Q") && !menuOption.equals("q"));
-		
-		//go to main menu
-	}
-//--------------------------------------------------------------------------------------------------------------------- 
-
-//--VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
-	public static boolean validatePassword(String password) {
-		//do we need this fuction to check for number of characters and all of that? Is that in the b requirements?
-		return true;
-	}
-//------------------------------------------------------------------------------------------------------ 
-
+//---END AUTHENTICATE--------------------------------------------------------------------------------------------------- 
 
 //--FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
 	public static void followUser(String currentUser) {
@@ -700,7 +723,42 @@ public static String selectRandomPrompt() {
 		}
 
 	}//end follow user
+//--END FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
+
+//ooooooooooooo--HELPER FUNCTIONS BELOW--ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+
+//--VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
+	public static boolean validatePassword(String password) {
+		//do we need this fuction to check for number of characters and all of that? Is that in the b requirements?
+		return true;
+	}
+//--END VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
+
+//---SELECT RANDOM PROMPT-------------------------------------------------------------------------------------------- 		
+//this function returns a "random" prompt each time it is called. This is Michelle's CodeBaby.
+public static String selectRandomPrompt() {
+	//select a random message prompt
+		Random random = new Random();
+		int maxNum = 6;
+		int randomNum = random.nextInt(maxNum) + 1;
+		//System.out.println("random number is: " + randomNum); 
+
+		String randomPrompt = "Type your message here: ";
+
+			if (randomNum == 1) { 	 	randomPrompt = "What's on your mind?";
+		} else if (randomNum == 2) { 	randomPrompt = "Say something!";
+		} else if (randomNum == 3) {	randomPrompt = "What's up?";
+		} else if (randomNum == 4) { 	randomPrompt = "Anything new to report?";
+		} else if (randomNum == 5) { 	randomPrompt = "What's happening?";
+		} else if (randomNum == 6) {	randomPrompt = "How are you doing today?";
+		} else { 						randomPrompt = "Tell me a secret~"; 
+		}
+		
+	return randomPrompt;
+}
 //------------------------------------------------------------------------------------------------------ 
+
 
 //--IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
 	public static boolean isAlreadyFollowing(String currentUser, String userToFollow) {
@@ -727,8 +785,7 @@ public static String selectRandomPrompt() {
 		}
 		return false;	
 	}
-//------------------------------------------------------------------------------------------------------ 
-
+//--END IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
 
 //---CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
 	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
@@ -745,39 +802,37 @@ public static String selectRandomPrompt() {
 		//This might be bogus
 		return false;
 	}
-//------------------------------------------------------------------------------------------------------ 
+//--END CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
 
-
-//------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
-	public static void displayOthersProfile() {
-		Scanner kb = new Scanner(System.in);
-		String userToSearchFor = "";
-		String userFound = "";
-			
-		System.out.println("Please enter the username who's profile you would like to display: "); 
-		userToSearchFor = kb.nextLine();
-		System.out.println(); 
+//--DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
+	public static void displayAllUsers() {
 		
-		if (doesUserExist(userToSearchFor)) {
-			viewProfile(userToSearchFor);
-		} else {
-			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
-			System.out.println("---------------------------"); 
-		}
+		ArrayList<User> allUsers = readUserFile();
+		int lengthOfUsersInFile = allUsers.size();
+		System.out.println("Here are all of the current users registered in the system: ");
+		for (int i = 0; i < lengthOfUsersInFile; i++) {
+			String currentUserName = (allUsers.get(i)).getUsername();
+			System.out.print(currentUserName);
+			if (i != lengthOfUsersInFile -1) {
+				System.out.print(",  "); 
+			}
+		}//end for
+		System.out.println(); 
+		System.out.println(); 
+		System.out.println("-------------------"); 
 	}
-//------------------------------------------------------------------------------------------------------ 
-	
-
+//--END DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
 
 //----FANCY SEARCH FUNCTION-------------------------------------------------------------------------------------------------- 
 	//austin I don't know what you want to do here but heres a spot
 	//take keyword user types in and look through bios find matching words in bio
 	//return a list of users
-
-
 //------------------------------------------------------------------------------------------------------ 
 
+//ooooooooooooo-^^^^-HELPER FUNCTIONS ABOVE-^^^^-ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
+
+//ooooooooooooooooooooooo--READING AND WRITING FILES--oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo 
 //---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
 	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -798,7 +853,7 @@ public static String selectRandomPrompt() {
 		}
 		return users;
 	}
-//--------------------------------------------------------------------------------------------------------------------- 
+//--END READ FROM USER FILE------------------------------------------------------------------------------------------------------- 
 	
 //----WRITE TO USER FILE--------------------------------------------------------------------------------------------------------
 	public static void writeUserFile(ArrayList users) {
