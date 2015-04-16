@@ -8,15 +8,12 @@ public class Tweet {
 	protected ArrayList<String> tags = new ArrayList<String>();
 
 	
-	public Tweet (String authorp, String bodyp, boolean pubTweetp, ArrayList<String> tags) {
+	public Tweet (String authorp, String bodyp, boolean pubTweetp, ArrayList<String> tagsp) {
 		author = authorp;
 		body = bodyp;
 		pubTweet = pubTweetp;
 		
-		//break up the following and fill array list
-		for (String singleTag: tags.toString().split(",")) {
-			tags.add(singleTag);
-		}
+		tags = tagsp;
 	}
 	
 	
