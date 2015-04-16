@@ -321,11 +321,15 @@ public class Client {
 		System.out.println("The messages that contain this hashtag are: "); 
 		//then go through that and grab all of the hashtags
 		for (int i = 0; i < tweetListSize; i++) {
-			ArrayList<String> hashtagList = allTheTweets.get(i).getTags();	
+			ArrayList<String> hashtagList = allTheTweets.get(i)
+               .getTags();	
 				for (int z = 0; z < hashtagList.size(); z++) {
-					if (hashtagList.get(z).equalsIgnoreCase(hashtagToSearch) && (allTheTweets.get(i).getPubTweet()) {
-						System.out.println(allTheTweets.get(i)); 
-						//FIX TO MAKE IT PRINT PRETTIER
+					if (hashtagList.get(z).equalsIgnoreCase(hashtagToSearch) && (allTheTweets.get(i).getPubTweet())) {
+                              Tweet tempTweet = allTheTweets.get(i);
+                              System.out.println(tempTweet.author + ":");
+                              System.out.println("    " + tempTweet.body);
+                              System.out.println();
+                              
 					
 					}
 				}
@@ -421,13 +425,13 @@ public class Client {
           String tweetBody = kb.nextLine();
           System.out.println("Would you like this to be a private message? Enter Y for yes, or just hit enter for no.");
           String privateT = kb.nextLine();
-          boolean makePrivate;
+          boolean makePublic = true;
           
           if(privateT.equals("Y") || privateT.equals("y")){
-               makePrivate = true;
+               makePublic = false;
           }
           else{
-               makePrivate = false;
+               makePublic = true;
           }
           ArrayList<String> empty = new ArrayList<String>();
           String combo = "@" + tweetAt + " : " + tweetBody;
@@ -465,11 +469,12 @@ public class Client {
 		}
 		  
 		  ArrayList<Tweet> tweets = readTweetFile();
-          Tweet tweet = new Tweet(user, combo, makePrivate, listOfTags);
-          tweets.add(tweet);
-          writeTweetFile(tweets);
+            Tweet tweet = new Tweet(user, combo, makePublic, listOfTags);
+            tweets.add(tweet);
+            writeTweetFile(tweets);
+          
           //System.out.println("Message sent: @" + tweetAt + " : " + tweetBody);
-     } // end of tweetTo(user)
+     } // end of tweetAt(user)
 //---------------------------------------------------------------------------------------------------------------
 
 //---IS USER-------------------------------------------------------------------------------------------
