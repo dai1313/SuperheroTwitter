@@ -112,7 +112,7 @@ public class Client {
 				//B: Edit bio
 				//C: Change password
 			System.out.println("S: Search for a message by hashtag.");
-			System.out.println("R: Respond to a message.");			
+			System.out.println("R: Tweet at another user.");			
             System.out.println("M: View your profile page.");			
 			System.out.println("Q: Log off.\n");
 			
@@ -137,7 +137,14 @@ public class Client {
 			} else if (menuOption.equals("S") || menuOption.equals("s")) {
 				//searchHashtag(username);
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
-				//respond(username);
+                    System.out.println("Which user would you like to send a tweet to? (Please enter username, and press enter)");
+                    String tweetTo = kb.nextLine();
+                    if(isUser(tweetTo)){
+				     tweetAt(username, tweetTo);
+                    }
+                    else{
+                         System.out.println("Not a valid username.");
+                    }
 			} else if (menuOption.equals("M") || menuOption.equals("m")) {
                     viewProfile(username);
                }	
@@ -323,18 +330,20 @@ public static String selectRandomPrompt() {
                     System.out.println("Username: " + temp.username);
                     System.out.println("Bio: " + temp.bio);
                     System.out.println();
-                    System.out.println("Tweets:");
+                    System.out.println("Public Tweets:");
                     
                     for(int k = 0; k < tweets.size(); k++){
                          Tweet tempTweet = tweets.get(k);
-                         if(tempTweet.author.equals(user)){
-                              System.out.println("You:");
+                         if(tempTweet.author.equals(user) && tempTweet.pubTweet){
+                              
+                              System.out.println(user + ":");
                               System.out.println("    " + tempTweet.body);
                               System.out.println();
-                         }
-                    }
-               }    
-          }
+                          }
+                                
+                    } 
+                 } 
+            } 
           System.out.println();
      } // end of viewProfile()
 //--------------------------------------------------------------------------------------------------------------------- 
@@ -367,6 +376,47 @@ public static String selectRandomPrompt() {
           
      }// of viewTweets()
 //--------------------------------------------------------------------------------------------------------------------- 
+
+//---TWEET AT-------------------------------------------------------------------------------------------
+     public static void tweetAt(String user, String tweetAt){
+          ArrayList<Tweet> tweets = readTweetFile();
+          Scanner kb = new Scanner(System.in);
+          System.out.println("What would you like to say to @" + tweetAt + "? ");
+          String tweetBody = kb.nextLine();
+          System.out.println("Would you like this to be a private tweet? Enter Y for yes, or just hit enter for no.");
+          String privateT = kb.nextLine();
+          boolean makePrivate;
+          if(privateT.equals("Y") || privateT.equals("y")){
+               makePrivate = true;
+          }
+          else{
+               makePrivate = false;
+          }
+          ArrayList<String> empty = new ArrayList();
+          String combo = "@" + tweetAt + " " + tweetBody;
+          // WHATEVER YOU GUYS FIGURE OUT THAT WE NEED TO DO TO MAKE A TWEET,
+          //                                    DO IT HERE    \/    TOO
+          Tweet tweet = new Tweet(user, combo, makePrivate, empty);
+          tweets.add(tweet);
+          writeTweetFile(tweets);
+          System.out.println("Tweet sent: @" + tweetAt + " " + tweetBody);
+          
+     } // end of tweetTo(user)
+//---------------------------------------------------------------------------------------------------------------
+
+//---IS USER-------------------------------------------------------------------------------------------
+     public static boolean isUser(String user){
+          ArrayList<User> users = readUserFile();
+          boolean isUser = false;
+          for(int i = 0; i < users.size(); i++){
+               User temp = users.get(i);
+               if(temp.username.equals(user)){
+                    isUser = true;
+               }
+          }
+          return isUser;
+     }// end of isUser()
+//----------------------------------------------------------------------------------------------------------
 
 
 //---CHANGE PASSWORD-------------------------------------------------------------------------------------------
@@ -709,8 +759,7 @@ public static String selectRandomPrompt() {
 		System.out.println(); 
 		
 		if (doesUserExist(userToSearchFor)) {
-			//display tylers profile function
-			System.out.println("I'm displaying the profile.  "); 
+			viewProfile(userToSearchFor);
 		} else {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
 			System.out.println("---------------------------"); 
