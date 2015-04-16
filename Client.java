@@ -326,7 +326,7 @@ public static String selectRandomPrompt() {
           ArrayList<Tweet> tweets = readTweetFile();
           for(int i = 0; i < users.size(); i++){
                User temp = users.get(i);
-               if(temp.username.equals(user)){
+               if(temp.username.equalsIgnoreCase(user)){
                     System.out.println("Username: " + temp.username);
                     System.out.println("Bio: " + temp.bio);
                     System.out.println();
@@ -334,13 +334,11 @@ public static String selectRandomPrompt() {
                     
                     for(int k = 0; k < tweets.size(); k++){
                          Tweet tempTweet = tweets.get(k);
-                         if(tempTweet.author.equals(user) && tempTweet.pubTweet){
-                              
+                         if(tempTweet.author.equalsIgnoreCase(user) && tempTweet.pubTweet){
                               System.out.println(user + ":");
                               System.out.println("    " + tempTweet.body);
                               System.out.println();
                           }
-                                
                     } 
                  } 
             } 
@@ -353,15 +351,17 @@ public static String selectRandomPrompt() {
      public static void viewTweets(String user){
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
-          for(int i = 0; i < tweets.size(); i++){
+          
+		  for (int i = 0; i < tweets.size(); i++) {
                Tweet temp = tweets.get(i);
-               for(int k = 0; k < users.size(); k++){
+               for (int k = 0; k < users.size(); k++) {
                     User curr = users.get(k);
-                    if(curr.username.equals(user)){
+
+                    if(curr.username.equalsIgnoreCase(user)){
                          ArrayList<String> following = curr.getFollowingList();
                          for(int t = 0; t < following.size(); t++){
                               String followingTemp = following.get(t);
-                              if(followingTemp.equals(temp.author)){
+                              if(followingTemp.equalsIgnoreCase(temp.author)){
                                    // String padded = temp.author + ("          ".substring(temp.author.length()));
                                    // System.out.print(padded);
                                    System.out.println(temp.author + ":");
@@ -410,7 +410,7 @@ public static String selectRandomPrompt() {
           boolean isUser = false;
           for(int i = 0; i < users.size(); i++){
                User temp = users.get(i);
-               if(temp.username.equals(user)){
+               if(temp.username.equalsIgnoreCase(user)){
                     isUser = true;
                }
           }
@@ -426,7 +426,7 @@ public static String selectRandomPrompt() {
           System.out.println("Please enter your new desired password: ");
           String newPW = kb.nextLine();
           for(int i = 0; i < users.size(); i++){
-               if(users.get(i).username.equals(user)){
+               if(users.get(i).username.equalsIgnoreCase(user)){
                     users.get(i).password = newPW;    
                }     
           }
@@ -477,11 +477,11 @@ public static String selectRandomPrompt() {
                     else{ // tweet is not public 
                          for(int k = 0; k < users.size(); k++){
                               User curr = users.get(k);
-                              if(curr.username.equals(user)){
+                              if(curr.username.equalsIgnoreCase(user)){
                                    ArrayList<String> following = curr.getFollowingList();
                                    for(int t = 0; t < following.size(); t++){
                                         String followingTemp = following.get(t);
-                                        if(followingTemp.equals(temp.author)){
+                                        if(followingTemp.equalsIgnoreCase(temp.author)){
                                              // String padded = temp.author + ("          ".substring(temp.author.length()));
                                              // System.out.print(padded);
                                                 System.out.println("Private tweet from " + temp.author + ":");
