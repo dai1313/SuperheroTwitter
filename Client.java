@@ -103,7 +103,7 @@ public class Client {
 			
 			//display the menu
 			System.out.println("T: Create a new message.");
-			System.out.println("V: View messages.");
+			System.out.println("V: View messages of people you're following.");
 			System.out.println("P: View public messages.");			
 			System.out.println("L: Lookup/Follow user.");
 				//S: Search users
@@ -191,7 +191,7 @@ public class Client {
 
 		//set is public or private. all are public by default?
 		boolean isPub = true;
-		System.out.println("Will this be a private message? [y/n]"); 
+		System.out.println("Will this be a private message? [y/N]"); 
 		String pubPrivateAns = kb.nextLine();
 		if (pubPrivateAns.equalsIgnoreCase("Y") || pubPrivateAns.equalsIgnoreCase("YES")) {
 			isPub = false;
@@ -321,7 +321,7 @@ public static String selectRandomPrompt() {
 
 
 //---VIEW PROFILE-------------------------------------------------------------------------------------------
-     public static void viewProfile(String user){
+     public static void viewProfile(String user) {
           ArrayList<User> users = readUserFile();
           ArrayList<Tweet> tweets = readTweetFile();
           for(int i = 0; i < users.size(); i++){
