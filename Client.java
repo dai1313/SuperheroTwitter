@@ -324,13 +324,19 @@ public static String selectRandomPrompt() {
      public static void viewProfile(String user) {
           ArrayList<User> users = readUserFile();
           ArrayList<Tweet> tweets = readTweetFile();
-          for(int i = 0; i < users.size(); i++){
+          
+			//grab followed users
+			
+
+		  for (int i = 0; i < users.size(); i++) {
                User temp = users.get(i);
                if(temp.username.equalsIgnoreCase(user)){
                     System.out.println("Username: " + temp.username);
                     System.out.println("Bio: " + temp.bio);
                     System.out.println();
-                    System.out.println("Public Tweets:");
+                    System.out.println("Followed Users: " + temp.getFollowingList()); 
+                    System.out.println();
+					System.out.println("Public Tweets:");
                     
                     for(int k = 0; k < tweets.size(); k++){
                          Tweet tempTweet = tweets.get(k);
@@ -346,6 +352,25 @@ public static String selectRandomPrompt() {
      } // end of viewProfile()
 //--------------------------------------------------------------------------------------------------------------------- 
 
+//------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
+	public static void displayOthersProfile() {
+		Scanner kb = new Scanner(System.in);
+		String userToSearchFor = "";
+		String userFound = "";
+			
+		System.out.println("Please enter the username who's profile you would like to display: "); 
+		userToSearchFor = kb.nextLine();
+		System.out.println(); 
+		
+		if (doesUserExist(userToSearchFor)) {
+			viewProfile(userToSearchFor);
+		} else {
+			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
+			System.out.println("---------------------------"); 
+		}
+	}
+//------------------------------------------------------------------------------------------------------ 
+
 
 //---VIEW TWEETS-------------------------------------------------------------------------------------------
      public static void viewTweets(String user){
@@ -357,7 +382,7 @@ public static String selectRandomPrompt() {
                for (int k = 0; k < users.size(); k++) {
                     User curr = users.get(k);
 
-                    if(curr.username.equalsIgnoreCase(user)){
+                    if (curr.username.equalsIgnoreCase(user)) {
                          ArrayList<String> following = curr.getFollowingList();
                          for(int t = 0; t < following.size(); t++){
                               String followingTemp = following.get(t);
@@ -514,7 +539,7 @@ public static String selectRandomPrompt() {
 		password = kb.nextLine();
 		
 		if (!validatePassword(password)) {
-			System.out.println("This password does not meet the minimum requirements. \n(Explain)");
+			System.out.println("This password does not meet the minimum requirements. \n");
 			return;
 		}
 		
@@ -623,7 +648,7 @@ public static String selectRandomPrompt() {
 			System.out.println("User Lookup/Follow Menu.");
 			
 			//display the menu
-			System.out.println("S: Search users.");	
+			//System.out.println("S: Search users.");	
 			System.out.println("F: Follow user.");	
 			System.out.println("D: Display other user's Profiles.");
 			System.out.println("Q: Return to main menu.\n");
@@ -748,24 +773,6 @@ public static String selectRandomPrompt() {
 //------------------------------------------------------------------------------------------------------ 
 
 
-//------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
-	public static void displayOthersProfile() {
-		Scanner kb = new Scanner(System.in);
-		String userToSearchFor = "";
-		String userFound = "";
-			
-		System.out.println("Please enter the username who's profile you would like to display: "); 
-		userToSearchFor = kb.nextLine();
-		System.out.println(); 
-		
-		if (doesUserExist(userToSearchFor)) {
-			viewProfile(userToSearchFor);
-		} else {
-			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
-			System.out.println("---------------------------"); 
-		}
-	}
-//------------------------------------------------------------------------------------------------------ 
 	
 
 
