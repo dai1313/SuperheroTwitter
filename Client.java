@@ -100,6 +100,10 @@ public class Client {
 
 
 //--MAIN MENU FUNCTION-------------------------------------------------------------------------------------------- 
+/**
+This is a method that runs one of the menus for our program, and it helps keep things organized.
+@param username the current user
+*/
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -161,6 +165,10 @@ public class Client {
 //--END MAIN MENU FUNCTION-------------------------------------------------------------------------------------------- 
 
 //--LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
+/**
+This is a method that runs one of the menus for our program, and it helps keep things organized.
+@param username the current user
+*/
 	public static void lookupUser(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -197,6 +205,10 @@ public class Client {
 //--END LOOKUP USER MENU-----------------------------------------------------------------------------------------------------
 
 //----USER SETTINGS MENU-----------------------------------------------------------------------------------------------
+/**
+This is a method that runs one of the menus for our program, and it helps keep things organized.
+@param username the current user
+*/
 	public static void userSettingsMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
@@ -646,6 +658,10 @@ This method displays other users profiles at the prompt of a username.
 //------------------------------------------------------------------------------------------------------ 
 	
 //---EDIT BIO--------------------------------------------------------------------------------------------------- 
+/**
+This method allows the user to edit their bio.
+@param username The current user
+*/
 	public static void editBio(String username) {
 		Scanner kb = new Scanner(System.in);
 		String bioLine = "";
@@ -683,6 +699,9 @@ This method displays other users profiles at the prompt of a username.
 //------------------------------------------------------------------------------------------------------ 
 	
 //---AUTHENTICATE--------------------------------------------------------------------------------------------------- 
+/**
+This is a method that checks to see if the information about the login and password matches what is saved in the files.
+*/
 	public static void authenticate() {
 		Scanner kb = new Scanner(System.in);
 		String username;
@@ -787,7 +806,6 @@ This method updates the current user's following list by adding the prompted for
 //--END VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
 
 //---SELECT RANDOM PROMPT-------------------------------------------------------------------------------------------- 		
-//this function returns a "random" prompt each time it is called. This is Michelle's CodeBaby.
 /**
 This function returns a pseudorandomly selected string to use at the prompt for creating a new message. 
 @return randomPrompt the randomly selected prompt string.
@@ -919,6 +937,10 @@ This displays a short list of all the users currently registered in the system.
 //--END READ FROM USER FILE------------------------------------------------------------------------------------------------------- 
 	
 //----WRITE TO USER FILE--------------------------------------------------------------------------------------------------------
+/**
+This writes all of the current users to the users file.
+@param users The ArrayList of users
+*/
 	public static void writeUserFile(ArrayList users) {
 		try {
 			//write the users to the disk
@@ -965,6 +987,10 @@ This displays a short list of all the users currently registered in the system.
 //--------------------------------------------------------------------------------------------------------------------- 
 	
 //-----WRITE TO TWEET FILE--------------------------------------------------------------------------------------------------
+/**
+This writes all of the current messages to the messages file.
+@param tweets The ArrayList of messages
+*/
 	public static void writeTweetFile(ArrayList tweets) {
 		try {
 			//write the tweets to the disk
