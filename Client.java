@@ -43,13 +43,19 @@ public class Client {
 		System.out.println(); 
 		System.out.println(); 
 		System.out.println(); 
-		System.out.print("  Press Enter:");
+		System.out.print("  Enter:");
 		
 		kb.nextLine();
 		
-		System.out.println("\n\nWelcome to the Avengers Initiative Communication System.\n\n");
+		System.out.println("\n\n  Welcome to the Avengers Initiative Communication System.\n");
 		
-		
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("   This system was created in collaboration with the Avengers to help facilitate communications between heroes and civilians.");
+		System.out.println("   Using Asgardian technology, we are able to bring together multiple universes and worlds- in the name of social facilitation.");
+		System.out.println("   We chose to keep the format simple so as to not confuse any members who might not have been exposed to today's technology."); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println(""); 
+
 		do	{
 			System.out.println("Please enter your selection.");
 			
@@ -158,6 +164,7 @@ public class Client {
 		String menuOption = "";
 		
 		do	{
+			System.out.println("----------------------------------------------------------"); 
 			System.out.println("User Lookup/Follow Menu.");
 			
 			//display the menu
@@ -171,6 +178,7 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
+			System.out.println("----------------------------------------------------------"); 
 			//select correct method - menu option
 			if (menuOption.equals("S") || menuOption.equals("s")) {
 				//searchUser(username);
@@ -191,6 +199,7 @@ public class Client {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		do	{
+			System.out.println("----------------------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
@@ -202,6 +211,7 @@ public class Client {
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
+			System.out.println("----------------------------------------------------------"); 
 			//select correct method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
 				editBio(username);
@@ -222,8 +232,9 @@ public class Client {
 		Scanner kb = new Scanner(System.in);
 		//prompt for message body
 		String prompt = selectRandomPrompt();
+		
+		prompt.concat("      (Push enter when done)");
 		System.out.println(prompt); 
-		System.out.println("Press enter when you have finished typing."); 	
 		//get body input
 		String body = kb.nextLine();	
 		int bodyLength = body.length();
@@ -287,7 +298,6 @@ public class Client {
 		} else {
 			//there are no hashtags. wasn't really sure what to do
 			listOfTags.add("NULL");
-//FIX THIS-------------------------------------------------------------------HEYYYYYYYYYYYYYYY FIX THAT
 		}
 
 		//make a new message.
@@ -334,7 +344,6 @@ public class Client {
 					}
 				}
 		}
-		//then search through that crap
 
 	}
 //---------------------------------------------------------------------------------------------------------------------- 
@@ -724,7 +733,7 @@ public class Client {
 				}
 		} else {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
-			System.out.println("---------------------------"); 
+			System.out.println("--------------------------------------------------------------------"); 
 		}
 
 	}//end follow user
