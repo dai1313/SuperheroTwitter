@@ -892,6 +892,11 @@ This displays a short list of all the users currently registered in the system.
 //--END DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
 
 //---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
+     /**
+     *This method reads in the users from a file, and puts them into an ArrayList.
+     *@param none.
+     *@return an ArrayList of users.
+     */
 	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
 		try {
@@ -932,6 +937,11 @@ This displays a short list of all the users currently registered in the system.
 //--------------------------------------------------------------------------------------------------------------------- 
 	
 //----READ FROM TWEET FILE--------------------------------------------------------------------------------------------------------
+     /**
+     *This method reads in the tweets from a file, and puts them into an ArrayList.
+     *@param none.
+     *@return an ArrayList of tweets.
+     */
 	public static ArrayList<Tweet> readTweetFile() {
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();		
 		try {	
