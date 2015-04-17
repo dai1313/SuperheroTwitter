@@ -229,6 +229,11 @@ public class Client {
 
 
 //----MAKE TWEET-----------------------------------------------------------------------------------------------
+/**
+This creates a new message and writes it to the messages file.
+@param username the current user
+@return an ArrayList of hashtags that were contained in the message
+*/
 	public static ArrayList<String> makeTweet(String username) {
 		
 		Scanner kb = new Scanner(System.in);
@@ -305,6 +310,9 @@ public class Client {
 //--END MAKE A TWEET---------------------------------------------------------------------------------------------------- 
 
 //--SEARCH BY HASHTAG---------------------------------------------------------------------------------------------------
+/**
+This function has the user type a word to search for from a list of all of the hashtags used in public messages.
+*/
 	public static void searchHashtag() {
 		String hashtagToSearch = "";
 		Scanner kb = new Scanner(System.in);
@@ -368,6 +376,9 @@ public class Client {
 //--------------------------------------------------------------------------------------------------------------------- 
 
 //------DISPLAY OTHERS PROFILE-------------------------------------------------------------------------- 
+/**
+This method displays other users profiles at the prompt of a username.	
+*/
 	public static void displayOthersProfile() {
 		Scanner kb = new Scanner(System.in);
 		String userToSearchFor = "";
@@ -701,6 +712,10 @@ public class Client {
 //---END AUTHENTICATE--------------------------------------------------------------------------------------------------- 
 
 //--FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
+/**
+This method updates the current user's following list by adding the prompted for user, if it exists, to the current user's following list.
+@param currentUser the current user
+*/
 	public static void followUser(String currentUser) {
 		Scanner kb = new Scanner(System.in);
 		//user types in person to follow
@@ -748,18 +763,20 @@ public class Client {
 	}//end follow user
 //--END FOLLOW A USER ---------------------------------------------------------------------------------------------------- 
 
-//ooooooooooooo--HELPER FUNCTIONS BELOW--ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-
 
 //--VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
 	public static boolean validatePassword(String password) {
-		//do we need this fuction to check for number of characters and all of that? Is that in the b requirements?
+		//not finished yet
 		return true;
 	}
 //--END VALIDATE PASSWORD---------------------------------------------------------------------------------------------------- 	
 
 //---SELECT RANDOM PROMPT-------------------------------------------------------------------------------------------- 		
 //this function returns a "random" prompt each time it is called. This is Michelle's CodeBaby.
+/**
+This function returns a pseudorandomly selected string to use at the prompt for creating a new message. 
+@return randomPrompt the randomly selected prompt string.
+*/
 public static String selectRandomPrompt() {
 	//select a random message prompt
 		Random random = new Random();
@@ -784,6 +801,12 @@ public static String selectRandomPrompt() {
 
 
 //--IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
+/**
+This function checks the current user's following list to make sure that they are not already following a user that they are trying to follow again.
+@param currentUser the current user
+@param userToFollow the user to check if they are already following
+@return true/false depending on whether or not the check succeeds
+*/
 	public static boolean isAlreadyFollowing(String currentUser, String userToFollow) {
 		//find the actual User object of current user
 		ArrayList<User> usersInFile = readUserFile();
@@ -811,7 +834,11 @@ public static String selectRandomPrompt() {
 //--END IS AREADY IN FOLLOWING LIST---------------------------------------------------------------------------------------------------- 
 
 //---CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
-	//THIS FUNCTION ASSUMES NO DUPLICATE USERNAMES!
+/**
+This function checks the userfile to see if the user passed into the function actually exists, and it assumes no duplicate usernames.
+@param userToSearchFor the user that is being checked against the file to see if they exist or not in the system
+@return true/false depending on whether or not the check succeeds
+*/
 	public static boolean doesUserExist(String userToSearchFor) {
 		ArrayList<User> usersToSearchList = readUserFile();
 		int lengthOfSearchArray = usersToSearchList.size();
@@ -828,6 +855,9 @@ public static String selectRandomPrompt() {
 //--END CHECK IF USER EXISTS-------------------------------------------------------------------------------------------------------
 
 //--DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
+/**
+This displays a short list of all the users currently registered in the system.
+*/
 	public static void displayAllUsers() {
 		
 		ArrayList<User> allUsers = readUserFile();
@@ -846,16 +876,6 @@ public static String selectRandomPrompt() {
 	}
 //--END DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
 
-//----FANCY SEARCH FUNCTION-------------------------------------------------------------------------------------------------- 
-	//austin I don't know what you want to do here but heres a spot
-	//take keyword user types in and look through bios find matching words in bio
-	//return a list of users
-//------------------------------------------------------------------------------------------------------ 
-
-//ooooooooooooo-^^^^-HELPER FUNCTIONS ABOVE-^^^^-ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-
-
-//ooooooooooooooooooooooo--READING AND WRITING FILES--oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo 
 //---READ FROM USER FILE---------------------------------------------------------------------------------------------------------
 	public static ArrayList<User> readUserFile() {
 		ArrayList<User> users = new ArrayList<User>();
@@ -939,10 +959,5 @@ public static String selectRandomPrompt() {
 
 
 
-
-
-
-//--------------------------------------------------------------------------------------------------------------------- 
-//-Client.java ends here---------------------------------------------------------------------------------------
 
 }
