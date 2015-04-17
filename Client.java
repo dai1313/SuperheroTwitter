@@ -144,7 +144,7 @@ public class Client {
 			} else if (menuOption.equals("R") || menuOption.equals("r")) {
                     System.out.println("Which user would you like to send a message to? (Please enter username, and press enter)");
                     String tweetTo = kb.nextLine();
-                    if(isUser(tweetTo)){
+                    if(doesUserExist(tweetTo)){
 				     tweetAt(username, tweetTo);
                     }
                     else{
@@ -346,6 +346,11 @@ This function has the user type a word to search for from a list of all of the h
 //--END SEARCH BY HASHTAG-------------------------------------------------------------------------------------------------------- 
 
 //---VIEW PROFILE-------------------------------------------------------------------------------------------
+     /**
+     * This method will print to the screen the profile information for the username called.
+     * @param User - the username of the user whose profile information will be displayed.
+     * @return void.
+     */ 
      public static void viewProfile(String user) {
           ArrayList<User> users = readUserFile();
           ArrayList<Tweet> tweets = readTweetFile();
@@ -400,6 +405,11 @@ This method displays other users profiles at the prompt of a username.
 
 
 //---VIEW TWEETS-------------------------------------------------------------------------------------------
+     /**
+     * This method will print the messages from all the users on the called user's following list.
+     * @param User - the username of the user whose following list will be checked before printing messages.
+     * @return void.
+     */ 
      public static void viewTweets(String user){
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
@@ -429,6 +439,12 @@ This method displays other users profiles at the prompt of a username.
 //--------------------------------------------------------------------------------------------------------------------- 
 
 //---TWEET AT-------------------------------------------------------------------------------------------
+     /**
+     * This method will allow users to direct a message at another registered user.
+     * @param user - the username of the user who will be the message's author.
+     * @param tweetAt - the username of the user whom the message will be directed at.
+     * @return void.
+     */ 
      public static void tweetAt(String user, String tweetAt){
           Scanner kb = new Scanner(System.in);
           System.out.println("What would you like to say to @" + tweetAt + "? ");
@@ -487,21 +503,12 @@ This method displays other users profiles at the prompt of a username.
      } // end of tweetAt(user)
 //---------------------------------------------------------------------------------------------------------------
 
-//---IS USER-------------------------------------------------------------------------------------------
-     public static boolean isUser(String user){
-          ArrayList<User> users = readUserFile();
-          boolean isUser = false;
-          for(int i = 0; i < users.size(); i++){
-               User temp = users.get(i);
-               if(temp.username.equalsIgnoreCase(user)){
-                    isUser = true;
-               }
-          }
-          return isUser;
-     }// end of isUser()
-//----------------------------------------------------------------------------------------------------------
-
 //---CHANGE PASSWORD-------------------------------------------------------------------------------------------
+     /**
+     * This method will allow users to change their password after they are registered.
+     * @param User - the username of the user who wants to change their password.
+     * @return void.
+     */ 
      public static void changePassword(String user){
           Scanner kb = new Scanner(System.in);
           ArrayList<User> users = readUserFile();
@@ -526,6 +533,11 @@ This method displays other users profiles at the prompt of a username.
 //-----------------------------------------------------------------------------------------------------------
 
 //---PRINT PUBLIC TWEETS-------------------------------------------------------------------------------------------
+     /**
+     * This method will print all public messages held in the system.
+     * @param User - the username of the user who wants to view public messages.
+     * @return void.
+     */ 
      public static void printPublicTweets(String user){
           // Load messages
           ArrayList<Tweet> tweets = readTweetFile();
@@ -580,6 +592,11 @@ This method displays other users profiles at the prompt of a username.
 
 	
 //---REGISTER A NEW USER------------------------------------------------------------------------------------- 
+     /**
+     * This method will allow a user to register as a user that can log into the system.
+     * @param none.
+     * @return void.
+     */ 
 	public static void register() {
 		Scanner kb = new Scanner(System.in);
 		String username;
