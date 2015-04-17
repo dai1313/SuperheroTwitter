@@ -225,8 +225,6 @@ public class Client {
 		//go to main menu
 	}
 //--END USER SETTINGS MENU-----------------------------------------------------------------------------------------------
-//ooooooooooooooooo-^^^^-MENUS ABOVE-^^^^-ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-
 
 //----MAKE TWEET-----------------------------------------------------------------------------------------------
 /**
