@@ -11,7 +11,9 @@ public class Client {
 	
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
-		
+	
+		System.out.println("    Welcome, to The..."); 
+		System.out.println("  "); 
 		
 		System.out.println("              K###");
 		System.out.println("              ####");
@@ -41,22 +43,24 @@ public class Client {
 		System.out.println("  ####L ;########");
 	
 		System.out.println(); 
+		System.out.println("\n  ...Initiative Communication System.\n");
 		System.out.println(); 
 		System.out.println(); 
-		System.out.print("  Enter:");
+		System.out.print("  Press Enter:");
 		
 		kb.nextLine();
 		
-		System.out.println("\n\n  Welcome to the Avengers Initiative Communication System.\n");
 		
-		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
-		System.out.println("   This system was created in collaboration with the Avengers to help facilitate communications between heroes and civilians.");
-		System.out.println("   Using Asgardian technology, we are able to bring together multiple universes and worlds- in the name of social facilitation.");
-		System.out.println("   We chose to keep the format simple so as to not confuse any members who might not have been exposed to today's technology."); 
-		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("  This system was created in collaboration with the Avengers to help facilitate communications between heroes and civilians.");
+		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes and worlds in the name of social facilitation.");
+		System.out.println("  We chose to keep the format simple so as to not confuse any members who might not have been exposed to today's technology."); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println(""); 
 		System.out.println(""); 
 
 		do	{
+			System.out.println("--Main Menu------------------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
@@ -68,8 +72,7 @@ public class Client {
 				//people into the unix terminal. It still will of they ctrl+c though.
 			//System.out.println("Q: Quit program.\n");
 			
-			//grab the input from the user
-			System.out.println("Enter your choice: ");
+			System.out.println("\nEnter your choice: ");
 			menuOption = kb.nextLine();
 			System.out.println("----------------------------------------------------------"); 
 		
@@ -87,6 +90,8 @@ public class Client {
 							//i'm considering making... just check the issues page on the github please
 			}
 		} while (!menuOption.equals("QUIT") && !menuOption.equals("quit"));
+		System.out.println("Have a super day! ;) "); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		
 		//clean quit code
 		//aka Main ends here
@@ -94,22 +99,19 @@ public class Client {
 //------------------------------------------------------------------------------------------------------ 	
 
 
-	
-	
 //--MAIN MENU FUNCTION-------------------------------------------------------------------------------------------- 
 	public static void mainMenu(String username) {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		
 		do	{
-			
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("--User Menu------------------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
-			System.out.println("T: Create a new message.");
-			System.out.println("V: View messages of people you're following.");
+			System.out.println("C: Create a new message.");
 			System.out.println("P: View public messages.");			
+			System.out.println("V: View messages of people you're following.");
 			System.out.println("L: Lookup/Follow user.");
 				//S: Search users
 				//F: Follow user
@@ -117,7 +119,7 @@ public class Client {
 				//B: Edit bio
 				//C: Change password
 			System.out.println("S: Search for a message by hashtag.");
-			System.out.println("R: Tweet at another user.");			
+			System.out.println("R: Message another user.");			
             System.out.println("M: View your profile page.");			
 			System.out.println("Q: Log off.\n");
 			
@@ -127,7 +129,7 @@ public class Client {
 			System.out.println("----------------------------------------------------------"); 
 		
 			//select correct method - menu option
-			if (menuOption.equals("T") || menuOption.equals("t")) {
+			if (menuOption.equals("C") || menuOption.equals("c")) {
 				makeTweet(username);
 			} else if (menuOption.equals("V") || menuOption.equals("v")) {
 				viewTweets(username);
@@ -164,15 +166,15 @@ public class Client {
 		String menuOption = "";
 		
 		do	{
-			System.out.println("----------------------------------------------------------"); 
-			System.out.println("User Lookup/Follow Menu.");
+			System.out.println("--Follow Other Users----------------------------------------------------"); 
+			System.out.println("Please enter your selection.");
 			
 			//display the menu
 			//System.out.println("S: Search users.");	
 			System.out.println("F: Follow user.");	
-			System.out.println("D: Display other user's Profiles.");
 			System.out.println("A: Display all other users.");
-			System.out.println("Q: Return to main menu.\n");
+			System.out.println("D: Display other user's Profiles.");
+			System.out.println("Q: Return to the Main Menu.\n");
 			
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
@@ -199,13 +201,13 @@ public class Client {
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		do	{
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("--User Settings--------------------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
 			System.out.println("B: Edit Bio.");
 			System.out.println("C: Change password.");	
-			System.out.println("Q: Return to main menu.\n");
+			System.out.println("Q: Return to the Main Menu.\n");
 			
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
@@ -233,7 +235,7 @@ public class Client {
 		//prompt for message body
 		String prompt = selectRandomPrompt();
 		
-		prompt.concat("      (Push enter when done)");
+		prompt = prompt.concat("      (Push enter when done)");
 		System.out.println(prompt); 
 		//get body input
 		String body = kb.nextLine();	
@@ -241,17 +243,6 @@ public class Client {
 		//System.out.println("You wrote: ");
 		//System.out.println(body); 
 		
-//not working
-//FIX THIS-------------------------------------------------------------------HEYYYYYYYYYYYYYYY FIX THAT
-		/*while (bodyLength <= 0) {
-			System.out.println("You can't have a blank message! Try again or press q to quit."); 
-			body = kb.nextLine();
-			if (body.equalsIgnoreCase("q")) {
-				return;	
-			}
-		}*/
-//bleghhh
-
 		//limit of num chars - 140
 		while (bodyLength > 140) {
 			System.out.println("I'm sorry, but the message you have typed is too long. :( "); 
@@ -299,19 +290,16 @@ public class Client {
 			//there are no hashtags. wasn't really sure what to do
 			listOfTags.add("NULL");
 		}
-
 		//make a new message.
 		Tweet newTweet = new Tweet(username, body, isPub, listOfTags);
-
 		//read the message file 
 		ArrayList<Tweet> currentMessages = readTweetFile();	
-
 		//add message to array list that the read message thing returns,
 		currentMessages.add(newTweet);
-
 		//write message file
 		writeTweetFile(currentMessages);	
-
+	
+		System.out.println("  "); 
 		return listOfTags;	
 	}
 //--END MAKE A TWEET---------------------------------------------------------------------------------------------------- 
@@ -328,25 +316,26 @@ public class Client {
 		ArrayList<Tweet> allTheTweets = readTweetFile();	
 		int tweetListSize = allTheTweets.size();
 
-		System.out.println("The messages that contain this hashtag are: "); 
+		System.out.println("The messages that contain the hashtag, " + hashtagToSearch + " are: "); 
 		//then go through that and grab all of the hashtags
 		for (int i = 0; i < tweetListSize; i++) {
-			ArrayList<String> hashtagList = allTheTweets.get(i)
-               .getTags();	
+			ArrayList<String> hashtagList = allTheTweets.get(i).getTags();	
 				for (int z = 0; z < hashtagList.size(); z++) {
 					if (hashtagList.get(z).equalsIgnoreCase(hashtagToSearch) && (allTheTweets.get(i).getPubTweet())) {
                               Tweet tempTweet = allTheTweets.get(i);
                               System.out.println(tempTweet.author + ":");
                               System.out.println("    " + tempTweet.body);
                               System.out.println();
-                              
-					
-					}
+					} //else {
+						//if (i == tweetListSize - 1) { 
+							//System.out.println("...Non-existant! Try another hashtag."); 
+							//System.out.println("  "); 
+						//}
+					//}
 				}
 		}
-
 	}
-//---------------------------------------------------------------------------------------------------------------------- 
+//--END SEARCH BY HASHTAG-------------------------------------------------------------------------------------------------------- 
 
 //---VIEW PROFILE-------------------------------------------------------------------------------------------
      public static void viewProfile(String user) {
@@ -394,6 +383,7 @@ public class Client {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
 			System.out.println("-----------------------------------------------------------"); 
 		}
+		System.out.println("  "); 
 	}
 //------------------------------------------------------------------------------------------------------ 
 
@@ -432,7 +422,7 @@ public class Client {
           Scanner kb = new Scanner(System.in);
           System.out.println("What would you like to say to @" + tweetAt + "? ");
           String tweetBody = kb.nextLine();
-          System.out.println("Would you like this to be a private message? Enter Y for yes, or just hit enter for no.");
+          System.out.println("Would you like this to be a private message? [y/N]");
           String privateT = kb.nextLine();
           boolean makePublic = true;
           
@@ -511,7 +501,7 @@ public class Client {
                     users.get(i).password = newPW;    
                }     
           }
-          System.out.println("New password will be " + newPW + ". Enter Y to confirm, or N to cancel: ");
+          System.out.println("New password will be " + newPW + ". Is this okay? [y/n]");
           String decision = kb.nextLine();
           if(decision.equals("Y") || decision.equals("y")){
                writeUserFile(users);
@@ -562,7 +552,7 @@ public class Client {
                                         if(followingTemp.equalsIgnoreCase(temp.author)){
                                              // String padded = temp.author + ("          ".substring(temp.author.length()));
                                              // System.out.print(padded);
-                                                System.out.println("Private tweet from " + temp.author + ":");
+                                                System.out.println("Private tweet from: " + temp.author + ":");
                                                 System.out.println("    " + temp.body);
                                                 System.out.println();
                                         }
@@ -588,8 +578,18 @@ public class Client {
 		System.out.println("Enter your desired username: ");
 		username = kb.nextLine();
 		
-		System.out.println("Enter your desired password: ");
-		password = kb.nextLine();
+		Console consoleObject = null;	
+		consoleObject = System.console();
+		try {
+			char[] hiddenPassword = consoleObject.readPassword("Enter your desired password:\n");
+			String hiddenPassToString = new String(hiddenPassword);
+			password = hiddenPassToString;
+			//System.out.println(hiddenPassword); 
+		} catch (Exception ugh) {
+			//System.out.println("I tried, but ran into " + ugh); 
+			System.out.println("Enter your desired password: ");
+			password = kb.nextLine();
+		}
 		
 		if (!validatePassword(password)) {
 			System.out.println("This password does not meet the minimum requirements. \n");
@@ -635,10 +635,12 @@ public class Client {
 			}
 		}
 		
-		System.out.println("Please enter your desired bio. \nIf you want to keep your current bio then simply press enter:");
-		
+		System.out.println("Please enter your new bio.  (If you want to keep your current bio then simply press enter):");
 		bioLine = kb.nextLine();
-		
+	
+		if (bioLine != "") {
+			System.out.println("Your bio has been successfully updated!"); 
+		}
 		//we don't want an empty bio
 		bioLinef = bioLine.replaceAll(" ","");
 		
@@ -656,21 +658,28 @@ public class Client {
 	
 //---AUTHENTICATE--------------------------------------------------------------------------------------------------- 
 	public static void authenticate() {
-		//We will need to read the usrename here
-		//the username list must be filled here as opposed to while the program initializes...
-			//..so people who register and then try to log in without quitting can log in
-		
 		Scanner kb = new Scanner(System.in);
 		String username;
 		String password;
 		boolean found = false;
-		
+	
 		System.out.println("Enter your username: ");
 		username = kb.nextLine();
 		
-		System.out.println("Enter your password: ");
-		password = kb.nextLine();
-		
+		//hiding password stuff
+		Console consoleObject = null;	
+		consoleObject = System.console();
+		try {
+			char[] hiddenPassword = consoleObject.readPassword("Enter your password:\n");
+			String hiddenPassToString = new String(hiddenPassword);
+			password = hiddenPassToString;
+			//System.out.println(hiddenPassword); 
+		} catch (Exception ugh) {
+			//System.out.println("I tried, but ran into " + ugh); 
+			System.out.println("Enter your password: ");
+			password = kb.nextLine();
+		}
+
 		ArrayList<User> users = readUserFile();
 		
 		for (int i = 0; i < users.size(); i++) {
@@ -686,7 +695,7 @@ public class Client {
 		}
 		
 		if (!found){
-			System.out.println("Could not find username.");
+			System.out.println("Login failed. Could not find username.");
 		}
 	}
 //---END AUTHENTICATE--------------------------------------------------------------------------------------------------- 
@@ -725,11 +734,11 @@ public class Client {
 						}//end for
 					} else {
 						System.out.println("You are already following: " + userToFollow + "."); 	
-						System.out.println("---------------------------"); 
+						System.out.println("--------------------------------------------------------------------"); 
 					}
 				} else {
 					System.out.println("You can't follow yourself!"); 
-					System.out.println("---------------------------"); 
+					System.out.println("--------------------------------------------------------------------"); 
 				}
 		} else {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
@@ -833,7 +842,7 @@ public static String selectRandomPrompt() {
 		}//end for
 		System.out.println(); 
 		System.out.println(); 
-		System.out.println("-------------------"); 
+		System.out.println("-------------------------------------------------------"); 
 	}
 //--END DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
 
