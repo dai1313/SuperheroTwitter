@@ -52,9 +52,9 @@ public class Client {
 		
 		
 		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
-		System.out.println("  This system was created in collaboration with the Avengers to help facilitate communications between heroes and civilians.");
-		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes and worlds in the name of social facilitation.");
-		System.out.println("  We chose to keep the format simple so as to not confuse any members who might not have been exposed to today's technology."); 
+		System.out.println("  This system was created in collaboration with the Avengers to help facilitate \n communications between heroes and civilians.");
+		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes \n and worlds in the name of social facilitation.");
+		System.out.println("  We chose to keep the format simple so as to not confuse any members who might \n not have been exposed to today's technology."); 
 		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		System.out.println(""); 
 		System.out.println(""); 
@@ -74,7 +74,7 @@ public class Client {
 			
 			System.out.println("\nEnter your choice: ");
 			menuOption = kb.nextLine();
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("-----------------------------------------------------------------"); 
 		
 			//select correct method - menu option
 			if (menuOption.equals("L") || menuOption.equals("l")) {
@@ -91,7 +91,7 @@ public class Client {
 			}
 		} while (!menuOption.equals("QUIT") && !menuOption.equals("quit"));
 		System.out.println("Have a super day! ;) "); 
-		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		
 		//clean quit code
 		//aka Main ends here
@@ -130,7 +130,7 @@ This is a method that runs one of the menus for our program, and it helps keep t
 			//grab the input from the user
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("-----------------------------------------------------------------"); 
 		
 			//select correct method - menu option
 			if (menuOption.equals("C") || menuOption.equals("c")) {
@@ -174,7 +174,7 @@ This is a method that runs one of the menus for our program, and it helps keep t
 		String menuOption = "";
 		
 		do	{
-			System.out.println("--Follow Other Users----------------------------------------------------"); 
+			System.out.println("--Follow Other Users---------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
@@ -188,7 +188,7 @@ This is a method that runs one of the menus for our program, and it helps keep t
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("-----------------------------------------------------------------"); 
 			//select correct method - menu option
 			if (menuOption.equals("S") || menuOption.equals("s")) {
 				//searchUser(username);
@@ -213,7 +213,7 @@ This is a method that runs one of the menus for our program, and it helps keep t
 		Scanner kb = new Scanner(System.in);
 		String menuOption = "";
 		do	{
-			System.out.println("--User Settings--------------------------------------------------------"); 
+			System.out.println("--User Settings--------------------------------------------------"); 
 			System.out.println("Please enter your selection.");
 			
 			//display the menu
@@ -225,7 +225,7 @@ This is a method that runs one of the menus for our program, and it helps keep t
 			System.out.println("Enter your choice: ");
 			menuOption = kb.nextLine();
 			
-			System.out.println("----------------------------------------------------------"); 
+			System.out.println("-----------------------------------------------------------------"); 
 			//select correct method - menu option
 			if (menuOption.equals("B") || menuOption.equals("b")) {
 				editBio(username);
@@ -386,7 +386,7 @@ This function has the user type a word to search for from a list of all of the h
                  } 
             } 
           System.out.println();
-	      System.out.println("---------------------------------------------------------------"); 
+		  System.out.println("-----------------------------------------------------------------"); 
      } // end of viewProfile()
 //--------------------------------------------------------------------------------------------------------------------- 
 
@@ -407,7 +407,7 @@ This method displays other users profiles at the prompt of a username.
 			viewProfile(userToSearchFor);
 		} else {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
-			System.out.println("-----------------------------------------------------------"); 
+		  	System.out.println("-----------------------------------------------------------------"); 
 		}
 		System.out.println("  "); 
 	}
@@ -783,15 +783,15 @@ This method updates the current user's following list by adding the prompted for
 						}//end for
 					} else {
 						System.out.println("You are already following: " + userToFollow + "."); 	
-						System.out.println("--------------------------------------------------------------------"); 
+		  				System.out.println("-----------------------------------------------------------------"); 
 					}
 				} else {
 					System.out.println("You can't follow yourself!"); 
-					System.out.println("--------------------------------------------------------------------"); 
+		  			System.out.println("-----------------------------------------------------------------"); 
 				}
 		} else {
 			System.out.println("I'm sorry, that user doesn't exist. Please try again."); 
-			System.out.println("--------------------------------------------------------------------"); 
+		  	System.out.println("-----------------------------------------------------------------"); 
 		}
 
 	}//end follow user
@@ -905,7 +905,7 @@ This displays a short list of all the users currently registered in the system.
 		}//end for
 		System.out.println(); 
 		System.out.println(); 
-		System.out.println("-------------------------------------------------------"); 
+		System.out.println("-----------------------------------------------------------------"); 
 	}
 //--END DISPLAY ALL USERS------------------------------------------------------------------------------------------------------------- 
 
