@@ -51,11 +51,11 @@ public class Client {
 		kb.nextLine();
 		
 		
-		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		System.out.println("  This system was created in collaboration with the Avengers to help facilitate communications between heroes and civilians.");
 		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes and worlds in the name of social facilitation.");
 		System.out.println("  We chose to keep the format simple so as to not confuse any members who might not have been exposed to today's technology."); 
-		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		System.out.println(""); 
 		System.out.println(""); 
 
