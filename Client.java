@@ -42,7 +42,7 @@ public class Client {
 		System.out.println("   #### ####fL#####");
 		System.out.println("  ####L ;########");
 	
-		System.out.println(); 
+		//System.out.println(); 
 		System.out.println("\n  ...Initiative Communication System.\n");
 		System.out.println(); 
 		System.out.println(); 
@@ -52,9 +52,9 @@ public class Client {
 		
 		
 		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
-		System.out.println("  This system was created in collaboration with the Avengers to help facilitate \n communications between heroes and civilians.");
-		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes \n and worlds in the name of social facilitation.");
-		System.out.println("  We chose to keep the format simple so as to not confuse any members who might \n not have been exposed to today's technology."); 
+		System.out.println("  This system was created in collaboration with the Avengers to help facilitate \n   communications between heroes and civilians.");
+		System.out.println("  Using Asgardian technology, we are able to bring together multiple universes \n   and worlds in the name of social facilitation.");
+		System.out.println("  We chose to keep the format simple so as to not confuse any members who might \n   not have been exposed to today's technology."); 
 		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		System.out.println(""); 
 		System.out.println(""); 
@@ -90,6 +90,14 @@ public class Client {
 							//i'm considering making... just check the issues page on the github please
 			}
 		} while (!menuOption.equals("QUIT") && !menuOption.equals("quit"));
+		System.out.println(""); 
+
+
+
+
+
+
+		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		System.out.println("Have a super day! ;) "); 
 		System.out.println("--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--"); 
 		
@@ -423,7 +431,8 @@ This method displays other users profiles at the prompt of a username.
      public static void viewTweets(String user){
           ArrayList<Tweet> tweets = readTweetFile();
           ArrayList<User> users = readUserFile();
-          
+         	boolean found = false;
+
 		  for (int i = 0; i < tweets.size(); i++) {
                Tweet temp = tweets.get(i);
                for (int k = 0; k < users.size(); k++) {
@@ -431,7 +440,7 @@ This method displays other users profiles at the prompt of a username.
 
                     if (curr.username.equalsIgnoreCase(user)) {
                          ArrayList<String> following = curr.getFollowingList();
-                         for(int t = 0; t < following.size(); t++){
+						 for(int t = 0; t < following.size(); t++){
                               String followingTemp = following.get(t);
                               if(followingTemp.equalsIgnoreCase(temp.author)){
                                    // String padded = temp.author + ("          ".substring(temp.author.length()));
@@ -439,12 +448,19 @@ This method displays other users profiles at the prompt of a username.
                                    System.out.println(temp.author + ":");
                                    System.out.println("    " + temp.body);
                                    System.out.println();
-                              }
+                              	   found = true;
+							  }
                          }
                     }     
                }
            }
-          
+         
+		if (!found) {
+			System.out.println("You need to follow some users first before you can see any messages."); 
+			System.out.println("  "); 
+			System.out.println("  "); 
+		}
+
      }// end of viewTweets()
 //--------------------------------------------------------------------------------------------------------------------- 
 
